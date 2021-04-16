@@ -23,7 +23,7 @@ def cutter(text, n):
     new_text = ""
     i = 0
     for e in text:
-        if i == 7:
+        if i == n:
             new_text += " "
             i=0
         i+= 1
