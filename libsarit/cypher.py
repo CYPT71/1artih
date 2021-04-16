@@ -12,7 +12,6 @@ def encryption(letter, square):
 
 def cypher(text, square):
     text = text.lower()
-
     x = ""
     y = ""
     mainStr = ""

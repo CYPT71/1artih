@@ -1,6 +1,7 @@
 import string
 
 def makeSquare(key):
+    key = key.lower()
     lettersKeys = list(dict.fromkeys([k for e in key.split(" ") for k in e]))
     
     rest = [l for l in string.ascii_lowercase if l not in lettersKeys and l!='w']
@@ -17,6 +18,7 @@ def makeSquare(key):
     return square
 
 def cutter(text, n):
+    text = text.lower()
     text = list("".join(text.split(" ")))
     new_text = ""
     i = 0
