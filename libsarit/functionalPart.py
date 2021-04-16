@@ -18,12 +18,13 @@ def makeSquare(key):
 
 def cutter(text, n):
     text = list("".join(text.split(" ")))
-    j = 0
-    for i in range(0, len(text)*2-1):
-        j+= 1
-        if j-1 == 7:
-            text.insert(i, " ")
-            j=0
-    print(text)
-    return "".join(text)
+    new_text = ""
+    i = 0
+    for e in text:
+        if i == 7:
+            new_text += " "
+            i=0
+        i+= 1
+        new_text += e
+    return new_text
 
