@@ -18,9 +18,10 @@ def makeSquare(key):
 
 def cutter(text, n):
     text = list("".join(text.split(" ")))
-    for i in range(len(text)):
-        if i%n == 0 and i != 0:
+    for i in range(1, len(text)*2):
+        if i%n == 0:
             text.insert(i, " ")
+    
     return "".join(text)
 
 def foundCorrespondencies(letter, square):

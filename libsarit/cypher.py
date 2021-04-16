@@ -1,4 +1,5 @@
 from .functionalPart import foundCorrespondencies
+
 def cypher(text, square):
     x = ""
     y = ""
