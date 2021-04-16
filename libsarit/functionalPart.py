@@ -2,7 +2,7 @@ import string
 
 def makeSquare(key):
     lettersKeys = list(dict.fromkeys([k for e in key.split(" ") for k in e]))
-    print()
+    
     rest = [l for l in string.ascii_lowercase if l not in lettersKeys and l!='w']
     letters = lettersKeys+rest
     square = []
