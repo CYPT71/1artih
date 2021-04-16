@@ -8,7 +8,6 @@ def FoundLetters(a, b, square):
         if a in l:
             line = l.copy()
             break
-    print(line)
     for e in square:
         if b in e:
             index = e.index(b)

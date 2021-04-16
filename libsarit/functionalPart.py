@@ -18,19 +18,11 @@ def makeSquare(key):
 
 def cutter(text, n):
     text = list("".join(text.split(" ")))
+    j = 0
     for i in range(1, len(text)*2):
-        if i%n == 0:
+        if j == 7:
             text.insert(i, " ")
-    
+        j+= 1
+    print(text)
     return "".join(text)
 
-def foundCorrespondencies(letter, square):
-    tupleLetters = None
-    for sub in square:
-        for i, l in enumerate(sub):
-            if l==letter:
-                tupleLetters = (sub[0], square[-1][i])
-                break
-            if tupleLetters:
-                break 
-    return tupleLetters
