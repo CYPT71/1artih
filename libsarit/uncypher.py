@@ -9,10 +9,18 @@ def FoundLetters(a, b, square):
     return Letterline[index]
     
 def uncypher(text, square):
-    text, result = text.split(" "), ""
-    for i in range(0, len(text)//2+1, 2):
-        for j in range(len(text[i])):
-            # print(text[i][j],text[i+1][j], FoundLetters(text[i][j],text[i+1][j], square))
-            result += FoundLetters(text[i][j],text[i+1][j], square)
-        
+    text = text.split(" ")
+    text = [e for e in text if e != ""]
+    lastElem = text[-1]
+    text = text[:-1]
+    result= ""
+    for i in range(0, len(text), 2):
+        for j in range(0, len(text[i])):
+            try:
+                result += FoundLetters(text[i][j],text[i+1][j], square)
+            except:
+                break
+    
+    print(result)
+
     return result
