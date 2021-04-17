@@ -18,7 +18,7 @@ def get_paires(text):
     text = text.replace("\n", "").split(" ")
     pairs = []
 
-    for i in range(len(text)//2):
+    for i in range(len(text)//2+1):
         for j in range(len(text[i])):
             pairs.append((text[i][j], text[i+1][j]))
         i+=1     
@@ -35,8 +35,8 @@ def uncypher(text, square):
         print(FoundLetters(paire[0], paire[1], square), paire)
         result += FoundLetters(paire[0], paire[1], square)
         
-        if i == 10:
-            pass
+        if i == 20:
+            break
         i+= 1
     
     return result

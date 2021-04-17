@@ -18,15 +18,6 @@ def makeSquare(key):
     return square
 
 def cutter(text, n):
-    text = text.lower()
-    text = list("".join(text.split(" ")))
-    new_text = ""
-    i = 0
-    for e in text:
-        if i == n:
-            new_text += " "
-            i=0
-        i+= 1
-        new_text += e
-    return new_text
+    text = text.replace(" ", "").replace("\n", "").lower()
+    return ' '.join(text[i:i+n] for i in range(0,len(text), n))
 

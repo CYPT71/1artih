@@ -2,7 +2,7 @@ def encryption(letter, square):
     tupleLetters = None
     for sub in square:
         for i, l in enumerate(sub):
-
+            
             if l==letter:
                 tupleLetters = (sub[0], square[-1][i])
                 break
@@ -10,8 +10,9 @@ def encryption(letter, square):
             break 
     return tupleLetters
 
-def cypher(text, square):
+def cypher(text, square, n):
     text = text.lower()
+    text = text.replace("w", "vv").replace("\n", "")
     x = ""
     y = ""
     mainStr = ""
@@ -25,7 +26,11 @@ def cypher(text, square):
             
             x += a
             y += b
-    mainStr += (x + y)
+    lastChar = x + y
+    endPass = lastChar[:7] + " " + lastChar[7:]
+
+
+    mainStr += endPass
 
     return mainStr
 

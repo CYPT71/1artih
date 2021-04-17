@@ -1,3 +1,3 @@
-from .cypher import cypher
-from .uncypher import uncypher, FoundLetters
+from .cypher import cypher, encryption
+from .uncypher import uncypher, FoundLetters,get_paires
 from .functionalPart import *
