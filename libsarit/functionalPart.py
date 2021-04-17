@@ -1,4 +1,6 @@
 import string
+import unidecode
+import re
 
 def makeSquare(key):
     key = key.lower()
@@ -16,6 +18,12 @@ def makeSquare(key):
         sub.append(l)
 
     return square
+
+def removeTransform(text):
+    text = unidecode.unidecode(text)
+    return re.sub('[^A-Za-z]+', '', text)
+
+
 
 cutter=lambda text,n:' '.join((text:=text.replace(" ","").replace("\n","").lower())[i:i+n]for i in range(0,len(text),n))
 

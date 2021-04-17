@@ -1,7 +1,8 @@
 import tkinter as tk
+import re
 from tkinter import Tk
 from tkinter import ttk
-from libsarit import cypher, functionalPart, uncypher, makeSquare, cutter
+from libsarit import cypher, functionalPart, uncypher, makeSquare, cutter,removeTransform
 
 
 root = tk.Tk()
@@ -27,7 +28,10 @@ result = ttk.Label(result_text, text="Result : ")
 
 text_entry = ttk.Entry(base_text)
 text = text_entry.get()
+
+re.sub('[^A-Za-z]+', '', text)
 text = cutter(text, 7)
+removeTransform(text)
 passWord = ttk.Entry(key, width=25)
 key = passWord.get()
 key = makeSquare(key)
