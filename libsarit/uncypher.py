@@ -10,36 +10,9 @@ def FoundLetters(a, b, square):
     
 def uncypher(text, square):
     text, result = text.split(" "), ""
-    for i in range(len(text)//2+1):
+    for i in range(0, len(text)//2+1, 2):
         for j in range(len(text[i])):
-            print(text[i][j],text[i+1][j], FoundLetters(text[i][j],text[i+1][j], square))
+            # print(text[i][j],text[i+1][j], FoundLetters(text[i][j],text[i+1][j], square))
             result += FoundLetters(text[i][j],text[i+1][j], square)
-        if i == 10:
-            break
-    return result
-
-
-
-
-
         
-
-
-
-
-
-
-
-
-
-    
-
-    
-
-
-    
-
-
-
-    
-
+    return result
