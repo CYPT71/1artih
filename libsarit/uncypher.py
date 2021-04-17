@@ -10,7 +10,6 @@ def FoundLetters(a, b, square):
     return Letterline[index]
     
 def uncypher(text, square):
-    print(len([e for e in text if e == " "]))
     text = text.split(" ")
     text = [e for e in text if e != ""]
     result= ""
