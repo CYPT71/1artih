@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import Tk
 from tkinter import ttk
+from libsarit import cypher, functionalPart, uncypher
 
 
 root = tk.Tk()
@@ -19,29 +20,32 @@ grid = ttk.Frame(root, width=50, height=50).grid(row=0, column=1)
 # ---------------------------------------------------Widgets---------------------------------------------------#
 
 
-text_entry = ttk.Label(base_text, text="Enter a Text >")
+text_label = ttk.Label(base_text, text="Enter a Text >")
 key_entry = ttk.Label(key, text="Enter a text key >")
 length = ttk.Label(key, text="Enter a length >")
 result = ttk.Label(result_text, text="Result : ")
 
-text = ttk.Entry(base_text)
+text_entry = ttk.Entry(base_text)
+text = text_entry.get()
 passWord = ttk.Entry(key, width=25)
+key = passWord.get()
 number = ttk.Entry(key, width=5)
+n = number.get()
 result_entry = ttk.Entry(result_text, width=30)
 
-breaker = ttk.Button(buttons_interface, text="uncypher")
-coder = ttk.Button(buttons_interface, text="cypher")
+breaker = ttk.Button(buttons_interface, text="uncypher", command=cypher(text, makeSquare(key)))
+coder = ttk.Button(buttons_interface, text="cypher", command=cypher(text, makeSquare(key), n))
 
 
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
 
-text_entry.grid(row=0, column=0)
+text_label.grid(row=0, column=0)
 key_entry.grid(row=1, column=0)
 length.grid(row=1, column=2)
 result.grid(row=3, column=0)
 
-text.grid(row=0, column=1)
+text_entry.grid(row=0, column=1)
 passWord.grid(row=1, column=1)
 number.grid(row=1, column=3)
 result_entry.grid(row=3, column=1)
@@ -50,4 +54,3 @@ breaker.grid(row=2, column=1)
 coder.grid(row=2, column=0)
 
 tk.mainloop()
-
