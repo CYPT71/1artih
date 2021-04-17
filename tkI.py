@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import Tk
 from tkinter import ttk
-from libsarit import cypher, functionalPart, uncypher
+from libsarit import cypher, functionalPart, uncypher, makeSquare, cutter
 
 
 root = tk.Tk()
@@ -27,14 +27,16 @@ result = ttk.Label(result_text, text="Result : ")
 
 text_entry = ttk.Entry(base_text)
 text = text_entry.get()
+text = cutter(text, 7)
 passWord = ttk.Entry(key, width=25)
 key = passWord.get()
+key = makeSquare(key)
 number = ttk.Entry(key, width=5)
 n = number.get()
 result_entry = ttk.Entry(result_text, width=30)
 
-breaker = ttk.Button(buttons_interface, text="uncypher", command=cypher(text, makeSquare(key)))
-coder = ttk.Button(buttons_interface, text="cypher", command=cypher(text, makeSquare(key), n))
+breaker = ttk.Button(buttons_interface, text="uncypher", command=cypher(text, key, n))
+coder = ttk.Button(buttons_interface, text="cypher", command=cypher(text, key, n))
 
 
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
