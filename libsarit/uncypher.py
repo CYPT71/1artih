@@ -1,17 +1,15 @@
 def FoundLetters(a, b, square):
     a = a.lower()
     b = b.lower()
-    indexA = None
-    indexB = None
-    i = 0
-    while indexA is None or indexB is None:
-        if a in square[i]:
-            indexA = i
-        if b in square[i]:
-            indexB = square[i].index(b)
-        i += 1
-    #print(indexA, indexB)
-    return square [indexA][indexB]
+    Letterline = []
+    index = 0
+    for line in square:
+        if a in line:
+            Letterline = line
+        if b in line:
+            index = line.index(b)
+    return Letterline[index]
+    
 
 
 def get_paires(text):
@@ -31,15 +29,21 @@ def uncypher(text, square):
 
     result = ""
     i = 0
+    s_count = 0
     for paire in paires:
-        print(FoundLetters(paire[0], paire[1], square), paire)
-        result += FoundLetters(paire[0], paire[1], square)
+        if s_count == 7:
+            result += " "
+            s_count = 0
+        result += FoundLetters(paire[0], paire[1], square) 
         
-        if i == 20:
-            break
+        
         i+= 1
-    
-    return result
+        s_count += 1
+    clear = ""
+    for i in result.split(" "):
+        if len(i.replace("s", ""))> 0:
+            clear += i
+    return clear
         
 
 
