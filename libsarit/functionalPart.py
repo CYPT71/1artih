@@ -1,7 +1,21 @@
 import string
-import unidecode
+
 import re
 
+try:
+    import unidecode
+except ImportError:
+    import os
+    import platform
+    if "win" in platform.system():
+        os.system("pip install -r requirements.txt")
+    else:
+        os.system("pip3 install -r requirements.txt")
+except Exception as e:
+    print(e)
+finally:
+    import unidecode
+    
 def makeSquare(key):
     key = key.lower()
     lettersKeys = list(dict.fromkeys(key.replace(" ", "")))
