@@ -28,20 +28,48 @@ result = ttk.Label(result_text, text="Result : ")
 
 text_entry = ttk.Entry(base_text)
 text = text_entry.get()
-removeTransform(text)
+
 passWord = ttk.Entry(key, width=25)
+
 key = passWord.get()
+
 number = ttk.Entry(key, width=5)
+
 n = number.get()
+
+
 # result_entry = ttk.Entry(result_text, width=30)
 
 
 # ---------------------------------------------------Create the data to cypher and uncypher----------------------#
-text = removeTransform(cutter(text, n))
-key = makeSquare(key)
 
-uncypherText = ttk.Button(buttons_interface, text="uncypher", command=uncypher(text, key))
-cypherText = ttk.Button(buttons_interface, text="cypher", command=cypher(text, key))
+print("text : ", text, "key :",key, "n >", n)
+if n.isdigit():
+    n = int(n)
+else:
+    n = None
+
+if text != "":
+    text = removeTransform(cutter(text, n))
+else:
+    text = None
+
+if key != "":
+     key = makeSquare(key)
+else:
+    key = None
+
+def textEncode(encode=True):
+    # pass
+    # print(n is not None and text is not None and key is not None)
+    if n is not None and text is not None and key is not None:
+        return cypher(text, key) if encode else uncypher(text, key)
+    else:
+        return None
+
+
+uncypherText = ttk.Button(buttons_interface, text="uncypher", command=textEncode(encode=False))
+cypherText = ttk.Button(buttons_interface, text="cypher", command=textEncode())
 
 
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
