@@ -2,7 +2,7 @@ import tkinter as tk
 import re
 from tkinter import Tk
 from tkinter import ttk
-from libsarit import cypher, functionalPart, uncypher, makeSquare, cutter,removeTransform
+from libsarit import cypher, uncypher, makeSquare, cutter,removeTransform
 
 
 root = tk.Tk()
@@ -28,19 +28,20 @@ result = ttk.Label(result_text, text="Result : ")
 
 text_entry = ttk.Entry(base_text)
 text = text_entry.get()
-
-re.sub('[^A-Za-z]+', '', text)
-text = cutter(text, 7)
 removeTransform(text)
 passWord = ttk.Entry(key, width=25)
 key = passWord.get()
-key = makeSquare(key)
 number = ttk.Entry(key, width=5)
 n = number.get()
-result_entry = ttk.Entry(result_text, width=30)
+# result_entry = ttk.Entry(result_text, width=30)
 
-breaker = ttk.Button(buttons_interface, text="uncypher", command=cypher(text, key, n))
-coder = ttk.Button(buttons_interface, text="cypher", command=cypher(text, key, n))
+
+# ---------------------------------------------------Create the data to cypher and uncypher----------------------#
+text = removeTransform(cutter(text, n))
+key = makeSquare(key)
+
+uncypherText = ttk.Button(buttons_interface, text="uncypher", command=uncypher(text, key))
+cypherText = ttk.Button(buttons_interface, text="cypher", command=cypher(text, key))
 
 
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
@@ -54,9 +55,9 @@ result.grid(row=3, column=0)
 text_entry.grid(row=0, column=1)
 passWord.grid(row=1, column=1)
 number.grid(row=1, column=3)
-result_entry.grid(row=3, column=1)
+# result_entry.grid(row=3, column=1)
 
-breaker.grid(row=2, column=1)
-coder.grid(row=2, column=0)
+uncypherText.grid(row=2, column=1)
+cypherText.grid(row=2, column=0)
 
 tk.mainloop()

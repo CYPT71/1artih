@@ -1,3 +1,3 @@
-from .cypher import cypher, encryption
-from .uncypher import FoundLetters, uncypher
-from .functionalPart import *
+from .cypher import cypher
+from .uncypher import uncypher
+from .functionalPart import makeSquare, cutter,removeTransform

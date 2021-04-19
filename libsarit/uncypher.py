@@ -1,5 +1,5 @@
 
-def FoundLetters(a, b, square):
+def unencryption(a, b, square):
     a,b, index = a.lower(),b.lower(), 0
     Letterline = []
     for line in square:
@@ -16,12 +16,12 @@ def uncypher(text, square):
     for i in range(0,len(text)-2,2):
         for j in range(0, len(text[i])):
                 
-            result += FoundLetters(text[i][j],text[i+1][j], square)
+            result += unencryption(text[i][j],text[i+1][j], square)
         
     last = text[-2]+text[-1]
     last = [last[:len(last)//2],last[len(last)//2:]]
 
     for i in range(len(last[0])):
-        result += FoundLetters(last[0][i], last[1][i], square)
+        result += unencryption(last[0][i], last[1][i], square)
 
     return result
