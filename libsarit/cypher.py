@@ -10,7 +10,7 @@ def encryption(letter, square):
             break 
     return tupleLetters
 
-def cypher(text, square, n):
+def cypher(text, square):
     text = text.lower()
     text = text.replace("w", "vv").replace("\n", "")
     x = ""
