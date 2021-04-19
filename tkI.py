@@ -2,7 +2,7 @@ import tkinter as tk
 import re
 from tkinter import Tk
 from tkinter import ttk
-from libsarit import cypher, uncypher, makeSquare, cutter,removeTransform
+from libsarit import cypher, uncypher, makeSquare, cutter
 
 
 root = tk.Tk()
@@ -50,7 +50,7 @@ else:
     n = None
 
 if text != "":
-    text = removeTransform(cutter(text, n))
+    text = cutter(text, n)
 else:
     text = None
 
