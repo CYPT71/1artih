@@ -1,8 +1,6 @@
 import tkinter as tk
-import re
-from tkinter import Tk
 from tkinter import ttk
-from libsarit import cypher, uncypher, makeSquare, cutter
+from libsarit import TextCypher
 
 
 root = tk.Tk()
@@ -43,33 +41,12 @@ n = number.get()
 
 # ---------------------------------------------------Create the data to cypher and uncypher----------------------#
 
-print("text : ", text, "key :",key, "n >", n)
-if n.isdigit():
-    n = int(n)
-else:
-    n = None
+def cypher(is_cypher):
+    var = TextCypher(text, key, n)
+    return var
 
-if text != "":
-    text = cutter(text, n)
-else:
-    text = None
-
-if key != "":
-     key = makeSquare(key)
-else:
-    key = None
-
-def textEncode(encode=True):
-    # pass
-    # print(n is not None and text is not None and key is not None)
-    if n is not None and text is not None and key is not None:
-        return cypher(text, key) if encode else uncypher(text, key)
-    else:
-        return None
-
-
-uncypherText = ttk.Button(buttons_interface, text="uncypher", command=textEncode(encode=False))
-cypherText = ttk.Button(buttons_interface, text="cypher", command=textEncode())
+uncypherText = ttk.Button(buttons_interface, text="uncypher", command=cypher(True))
+cypherText = ttk.Button(buttons_interface, text="cypher", command=cypher(False))
 
 
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#

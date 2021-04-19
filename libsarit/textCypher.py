@@ -3,12 +3,12 @@ from .cypher import cypher
 from .uncypher import uncypher
 
 
-class TextCypher(object):
+class TextCypher:
 
     def __init__(self, text, key, spacer, is_cypher=False):
-        if text == "" or not spacer.isdigit() or key =="" or text is None or key is None:
+        if text == "" or not spacer.isdigit() or key == "" or text is None or key is None:
             return
-        self.text = cutter(text, spacer)
+        self.text = cutter(text, int(spacer))
         self.key = makeSquare(key)
         self.is_cypher = is_cypher
 
@@ -18,10 +18,15 @@ class TextCypher(object):
     def text_uncypher(self):
         return uncypher(self.text, self.key)
 
-    def __next__(self):
+    def __iter__(self):
 
         if self.is_cypher:
-            return self.text_uncypher(), self.text
-
+            for e in self.text_uncypher(), self.text:
+                if e.endswith(" "):
+                    e = " ".join(e.split(" ")[:-1])
+                yield e
         else:
-            return self.text_cypher(), self.text
+            for e in self.text_cypher(), self.text:
+                if e.endswith(" "):
+                    e = " ".join(e.split(" ")[:-1])
+                yield e

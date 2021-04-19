@@ -27,7 +27,8 @@ def cypher(text, square):
             x += a
             y += b
     lastChar = x + y
-    endPass = lastChar[:7] + " " + lastChar[7:]
+    spacer = len(text.split(" ")[0])
+    endPass = lastChar[:spacer] + " " + lastChar[spacer:]
 
 
     mainStr += endPass
