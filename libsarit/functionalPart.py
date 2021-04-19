@@ -35,7 +35,7 @@ def makeSquare(key):
 
 def removeTransform(text):
     text = unidecode.unidecode(text)
-    return re.sub('[^A-Za-z]+', '', text)
+    return re.sub('[^A-Za-z]+', '', text).lower()
 
 
 
