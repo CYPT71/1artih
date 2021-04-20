@@ -12,7 +12,7 @@ def encryption(letter, square):
 
 def cypher(text, square):
     text = text.lower()
-    text = text.replace("w", "vv").replace("\n", "")
+    text = text.replace("w", "vv")
     x = ""
     y = ""
     mainStr = ""
