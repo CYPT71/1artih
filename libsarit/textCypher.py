@@ -12,21 +12,12 @@ class TextCypher:
         self.key = makeSquare(key)
         self.is_cypher = is_cypher
 
-    def text_cypher(self):
+    def _text_cypher(self):
         return cypher(self.text, self.key)
 
-    def text_uncypher(self):
+    def _text_uncypher(self):
         return uncypher(self.text, self.key)
 
-    def __iter__(self):
-
-        if self.is_cypher:
-            for e in self.text_uncypher(), self.text:
-                if e.endswith(" "):
-                    e = " ".join(e.split(" ")[:-1])
-                yield e
-        else:
-            for e in self.text_cypher(), self.text:
-                if e.endswith(" "):
-                    e = " ".join(e.split(" ")[:-1])
-                yield e
+    def __repr__(self):
+        return self._text_uncypher() if self.is_cypher else self._text_cypher()
+        

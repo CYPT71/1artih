@@ -20,9 +20,10 @@ def uncypher(text, square):
             result += unencryption(text[i][j],text[i+1][j], square)
         
     last = text[-2]+text[-1]
-    last = [last[:len(last)//2],last[len(last)//2:]]
+    lenLast = len(last)//2
+    last = [last[:lenLast],last[lenLast:]]
 
-    for i in range(len(last[0])):
+    for i in range(lenLast):
         result += unencryption(last[0][i], last[1][i], square)
 
     return result

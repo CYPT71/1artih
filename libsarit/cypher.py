@@ -4,14 +4,16 @@ def encryption(letter, square):
         for i, l in enumerate(sub):
             
             if l==letter:
-                tupleLetters = (sub[0], square[-1][i])
+                try:
+                    tupleLetters = (sub[0], square[-1][i])
+                except:
+                    raise Exception(i, len(square[-1]))
                 break
         if tupleLetters:
             break 
     return tupleLetters
 
 def cypher(text, square):
-    text = text.lower()
     text = text.replace("w", "vv")
     x = ""
     y = ""
