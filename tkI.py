@@ -18,11 +18,11 @@ grid = ttk.Frame(root, width=50, height=50).grid(row=0, column=1)
 
 # ---------------------------------------------------Widgets---------------------------------------------------#
 
-
+variable = None
 text_label = ttk.Label(base_text, text="Enter a Text >")
 key_entry = ttk.Label(key, text="Enter a text key >")
 length = ttk.Label(key, text="Enter a length >")
-result = ttk.Label(result_text, text="Result : ")
+result = ttk.Label(result_text, text="Result : "+variable)
 
 text_entry = ttk.Entry(base_text)
 text = text_entry.get()
@@ -42,12 +42,16 @@ n = number.get()
 # ---------------------------------------------------Create the data to cypher and uncypher----------------------#
 
 def cypher(is_cypher):
-    var = TextCypher(text, key, n)
-    return var
+    global variable
+    variable = TextCypher(text, key, n, is_cypher)
+    
 
 uncypherText = ttk.Button(buttons_interface, text="uncypher", command=cypher(True))
 cypherText = ttk.Button(buttons_interface, text="cypher", command=cypher(False))
 
+result.forget()
+
+result.grid(row=3, column=1)
 
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
