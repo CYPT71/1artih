@@ -40,5 +40,5 @@ def removeTransform(text):
     text = unidecode.unidecode(text)
     return re.sub('[^A-Za-z]+', '', text).lower()
 
-
-cutter = lambda text, n: ' '.join((text := removeTransform(text))[i:i + n] for i in range(0, len(text), n))
+def cutter(text, n):
+    return ' '.join((text := removeTransform(text))[i:i + n] for i in range(0, len(text), n))

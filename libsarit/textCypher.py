@@ -7,17 +7,21 @@ class TextCypher:
 
     def __init__(self, text, key, spacer, is_cypher=False):
         if text == "" or not spacer.isdigit() or key == "" or text is None or key is None:
-            return
-        self.text = cutter(text, int(spacer))
-        self.key = makeSquare(key)
-        self.is_cypher = is_cypher
+            self.notvalid = True
+        else:
+            self.notvalid = False
+            self.text = cutter(text, int(spacer))
+            self.key = makeSquare(key)
+            self.cypher = is_cypher
 
     def _text_cypher(self):
-        return cypher(self.text, self.key)
+        return cutter(cypher(self.text, self.key), 5).upper()
 
     def _text_uncypher(self):
-        return uncypher(self.text, self.key)
+        return uncypher(self.text, self.key).upper()
 
     def __repr__(self):
-        return self._text_uncypher() if self.is_cypher else self._text_cypher()
+        if self.notvalid:
+            return ""
+        return self._text_uncypher() if self.cypher else self._text_cypher()
         
