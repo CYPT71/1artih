@@ -19,11 +19,9 @@ finally:
 
 
 def makeSquare(key):
-    key = removeTransform(key).replace("w", "vv")
-    lettersKeys = list(dict.fromkeys(key.replace(" ", "")))
+    lettersKeys = list(dict.fromkeys(removeTransform(key).replace("w", "vv")))
 
-    rest = [l for l in string.ascii_lowercase if l not in lettersKeys and l != "w"]
-    letters = lettersKeys + rest
+    letters = lettersKeys + [l for l in string.ascii_lowercase if l not in lettersKeys and l != "w"]
     square = []
     sub = letters[:5]
     for l in letters:
