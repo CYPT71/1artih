@@ -8,10 +8,8 @@ def encryption(letter, square):
                     tupleLetters = (sub[0], square[-1][i])
                 except:
                     raise Exception(i, len(square[-1]))
-                break
-        if tupleLetters:
-            break 
-    return tupleLetters
+                return tupleLetters
+    
 
 def cypher(text, square):
     text = text.replace("w", "vv")
