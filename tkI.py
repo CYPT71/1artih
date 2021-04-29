@@ -51,7 +51,7 @@ def generate_grid(e):
 passWord.bind("<Key>", generate_grid)
 passWord.bind("<Motion>", generate_grid)
 
-#-------------------Fonctionnalités de remise en forme------------------#
+#-------------------Fonctionnalités de mise en forme------------------#
 def deleter():
     result_entry.delete("1.0", "end")
     text_entry.delete("1.0", "end")
@@ -59,10 +59,18 @@ def deleter():
     number.delete(0, "end")
     generate_grid(None)
 
+def cypher():
+    result_entry.delete("1.0", "end")
+    result_entry.insert(INSERT, TextCypher(text_entry.get("1.0", "end"), passWord.get(), number.get(), False))
+
+def uncypher():
+    text_entry.delete("1.0", "end")
+    text_entry.insert(INSERT, TextCypher(result_entry.get("1.0", "end"), passWord.get(), number.get(), True))
+
 #-------------------Fonctinalités principales---------------------#
 
-uncypherText = ttk.Button(buttons_interface, text="uncypher", command= lambda: text_entry.insert(INSERT, TextCypher(result_entry.get("1.0", "end"), passWord.get(), number.get(), True)))
-cypherText = ttk.Button(buttons_interface, text="cypher", command= lambda: result_entry.insert(INSERT, TextCypher(text_entry.get("1.0", "end"), passWord.get(), number.get(), False)))
+uncypherText = ttk.Button(buttons_interface, text="uncypher", command= uncypher )
+cypherText = ttk.Button(buttons_interface, text="cypher", command= cypher)
 delete = ttk.Button(buttons_interface, text="delete", command= deleter)
 
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
