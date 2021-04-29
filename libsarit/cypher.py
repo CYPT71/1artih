@@ -1,12 +1,12 @@
 def encryption(letter, square):
+    if len(square) < 1:
+        return ("", "")
+    if len(square[0])<1:
+        return ("", "")
     for sub in square:
         for i, l in enumerate(sub):  
             if l==letter:
-                try:
-                    tupleLetters = (sub[0], square[-1][i])
-                except:
-                    raise Exception(i, len(square[-1]))
-                return tupleLetters
+                return  (sub[0], square[-1][i])
     
 
 def cypher(text, square):
