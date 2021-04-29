@@ -16,8 +16,8 @@ grid = ttk.Frame(root)
 text_label = ttk.Label(base_text, text="Clear text >")
 key_entry = ttk.Label(key, text="Enter a text key >")
 length = ttk.Label(key, text="Enter a length >")
-result = ttk.Label(result_text, text="Result > ")
-grid_text = ttk.Label(grid, text="Cypher text")
+result = ttk.Label(result_text, text="Cypher text > ")
+grid_text = ttk.Label(grid, text="Grid of letters")
 
 text_entry = Text(base_text, width=100, height=10)
 passWord = ttk.Entry(key, width=25)
@@ -50,11 +50,19 @@ def generate_grid(e):
 passWord.bind("<Key>", generate_grid)
 passWord.bind("<Motion>", generate_grid)
 
+#-------------------Fonctionnalités de remise en forme------------------#
+def deleter():
+    result_entry.delete("1.0", "end")
+    text_entry.delete("1.0", "end")
+    passWord.delete(0, "end")
+    number.delete(0, "end")
+    generate_grid(None)
+
 #-------------------Fonctinalités principales---------------------#
 
 uncypherText = ttk.Button(buttons_interface, text="uncypher", command= lambda: text_entry.insert(INSERT, TextCypher(result_entry.get("1.0", "end"), passWord.get(), number.get(), True)))
 cypherText = ttk.Button(buttons_interface, text="cypher", command= lambda: result_entry.insert(INSERT, TextCypher(text_entry.get("1.0", "end"), passWord.get(), number.get(), False)))
-delete = ttk.Button(buttons_interface, text="delete", command= lambda: result_entry.delete("1.0", "end"))
+delete = ttk.Button(buttons_interface, text="delete", command= deleter)
 
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
