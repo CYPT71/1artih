@@ -4,18 +4,13 @@ def encryption(letter, square):
     
 
 def cypher(text, square):
-    text = text.replace("w", "vv")
-    x = ""
-    y = ""
-    mainStr = ""
-    for letter in text:
+    x, y, mainStr = "", "", ""
+    for letter in text.replace("w", "vv"):
         if letter == " ":
             mainStr += (x +" "+ y+" ")            
-            x = ""
-            y = ""
+            x, y = ""
         else:
             a, b = encryption(letter, square)
-            
             x += a
             y += b
     lastChar = x + y
