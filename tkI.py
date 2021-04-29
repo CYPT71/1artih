@@ -1,5 +1,6 @@
 from tkinter import Text, INSERT, Canvas, ttk, Tk
 from libsarit import TextCypher, makeSquare
+import tkinter.font
 
 root = Tk()
 
@@ -19,10 +20,10 @@ length = ttk.Label(key, text="Enter a length >")
 result = ttk.Label(result_text, text="Cypher text > ")
 grid_text = ttk.Label(grid, text="Grid of letters")
 
-text_entry = Text(base_text, width=100, height=10)
+text_entry = Text(base_text, width=60, height=10)
 passWord = ttk.Entry(key, width=25)
 number = ttk.Entry(key, width=10)
-result_entry = Text(result_text, width=100, height=10)
+result_entry = Text(result_text, width=60, height=10)
 
 # ---------------------------------------------------Functions----------------------------------------------------------#
 
@@ -72,22 +73,22 @@ buttons_interface.grid(row=2, column=0)
 result_text.grid(row=3, column=0)
 grid.grid(row=0, column=2, rowspan=3)
 
-text_label.grid(row=0, column=0)
+text_label.grid(row=0, column=0, sticky='w')
 key_entry.grid(row=0, column=0)
 length.grid(row=0, column=2)
-result.grid(row=0, column=0)
+result.grid(row=0, column=0, sticky='w')
 grid_text.grid(row=0, column=0)
 
-text_entry.grid(row=0, column=1, ipadx=10)
-passWord.grid(row=0, column=1)
+text_entry.grid(row=1, column=0, padx=5, pady=5)
+passWord.grid(row=0, column=1, padx=(0, 20))
 number.grid(row=0, column=3)
-result_entry.grid(row=0, column=1)
+result_entry.grid(row=4, column=0, padx=5, pady=5)
 
 cypherText.grid(row=0, column=0)
 uncypherText.grid(row=0, column=1)
 delete.grid(row=0, column=2)
 
-grille.grid(row=1, column=0)
+grille.grid(row=1, column=0, padx=10, pady=5)
 
 generate_grid(None)
 

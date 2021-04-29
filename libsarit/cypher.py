@@ -1,17 +1,13 @@
 def encryption(letter, square):
-    tupleLetters = None
     for sub in square:
-        for i, l in enumerate(sub):
-            
+        for i, l in enumerate(sub):  
             if l==letter:
                 try:
                     tupleLetters = (sub[0], square[-1][i])
                 except:
                     raise Exception(i, len(square[-1]))
-                break
-        if tupleLetters:
-            break 
-    return tupleLetters
+                return tupleLetters
+    
 
 def cypher(text, square):
     text = text.replace("w", "vv")
@@ -31,8 +27,7 @@ def cypher(text, square):
     lastChar = x + y
     spacer = len(text.split(" ")[0])
     endPass = lastChar[:spacer] + " " + lastChar[spacer:]
-
-
+    
     mainStr += endPass
 
     return mainStr
