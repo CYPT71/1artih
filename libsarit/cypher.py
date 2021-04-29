@@ -6,11 +6,7 @@ def encryption(letter, square):
     for sub in square:
         for i, l in enumerate(sub):  
             if l==letter:
-                try:
-                    tupleLetters = (sub[0], square[-1][i])
-                except:
-                    return ("","")
-                return tupleLetters
+                return  (sub[0], square[-1][i])
     
 
 def cypher(text, square):
