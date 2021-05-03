@@ -13,7 +13,7 @@ except ImportError:
     else:
         os.system("pip3 install -r requirements.txt")
 except Exception as e:
-    print(e)
+    print(e, "please install requirements.txt")
 finally:
     import unidecode
 
