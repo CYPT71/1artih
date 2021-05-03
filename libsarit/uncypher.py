@@ -14,14 +14,22 @@ def uncypher(text, square):
     text = [e for e in text if e != ""]
     result= ""
     spacer = len(text[0])
-    for i in range(0,len(text)-2,2):
+    end=2
+    if list(map(len, text))[-2] == spacer:
+        end=1   
+    for i in range(0,len(text)-end,2):
         for j in range(0, spacer):
                 
             result += unencryption(text[i][j],text[i+1][j], square)
-        
-    last = text[-2]+text[-1]
+    
+    last = text[-1]
+    if end == 2:
+        last = text[-2] + text[-1]
+    
     lenLast = len(last)//2
     last = [last[:lenLast],last[lenLast:]]
+
+    
 
     for i in range(lenLast):
         result += unencryption(last[0][i], last[1][i], square)
