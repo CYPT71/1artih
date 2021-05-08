@@ -1,5 +1,5 @@
 
-def unencryption(a, b, square):
+def dencryption(a, b, square):
     a,b, index = a.lower(),b.lower(), 0
     Letterline = []
     for line in square:
@@ -17,21 +17,23 @@ def uncypher(text, square):
     end=2
     if list(map(len, text))[-2] == spacer:
         end=1   
-    for i in range(0,len(text)-end,2):
-        for j in range(0, spacer):
-                
-            result += unencryption(text[i][j],text[i+1][j], square)
-    
+    if len(text) >2:
+        for i in range(0,len(text)-end,2):
+            for j in range(0, spacer):
+                    
+                result += dencryption(text[i][j],text[i+1][j], square)
+    else:
+        text = ["".join(text)]
     last = text[-1]
     if end == 2:
         last = text[-2] + text[-1]
     
+    
     lenLast = len(last)//2
     last = [last[:lenLast],last[lenLast:]]
-
-    
+   
 
     for i in range(lenLast):
-        result += unencryption(last[0][i], last[1][i], square)
+        result += dencryption(last[0][i], last[1][i], square)
 
     return result

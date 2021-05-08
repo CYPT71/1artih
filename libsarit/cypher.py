@@ -14,10 +14,11 @@ def cypher(text, square):
             x += a
             y += b
     lastChar = x + y
+    
     spacer = len(text.split(" ")[0])
     endPass = lastChar[:spacer] + " " + lastChar[spacer:]
     
     mainStr += endPass
-
+    print(mainStr)
     return mainStr
 
