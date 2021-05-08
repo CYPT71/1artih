@@ -1,2 +1,7 @@
 ./UncypherTest.py
-./test.py
+./test.pyMakeSpacer.py
+UncypherTest.py
+libsarit/__pycache__
+test.py
+texput.log
+MakeSpacer.py
