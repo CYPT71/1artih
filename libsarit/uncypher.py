@@ -24,15 +24,14 @@ def uncypher(text, square):
                 result += dencryption(text[i][j],text[i+1][j], square)
     else:
         text = ["".join(text)]
-    last = text[-1]
     if end == 2:
         last = text[-2] + text[-1]
     
-    
+    # decrypte the last caractere 
+    last = text[-1]
     lenLast = len(last)//2
     last = [last[:lenLast],last[lenLast:]]
    
-
     for i in range(lenLast):
         result += dencryption(last[0][i], last[1][i], square)
 
