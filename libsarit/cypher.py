@@ -21,6 +21,5 @@ def cypher(text, square):
     endPass = lastChar[:spacer] + " " + lastChar[spacer:]
     
     mainStr += endPass
-    print(mainStr)
     return mainStr
 
