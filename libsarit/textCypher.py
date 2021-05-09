@@ -6,13 +6,10 @@ from .uncypher import uncypher
 class TextCypher:
 
     def __init__(self, text, key, spacer, is_cypher=False):
-        if text == "" or not spacer.isdigit() or key == "" or text is None or key is None:
-            self.notvalid = True
-        else:
-            self.notvalid = False
-            self.text = cutter(text, int(spacer))
-            self.key = makeSquare(key)
-            self.cypher = is_cypher
+        
+        self.text = cutter(text, int(spacer))
+        self.key = makeSquare(key)
+        self.cypher = is_cypher
 
     def _text_cypher(self):
         return cutter(cypher(self.text, self.key), 5).upper()
@@ -21,7 +18,7 @@ class TextCypher:
         return uncypher(self.text, self.key).upper()
 
     def __repr__(self):
-        if self.notvalid:
+        if text == "" or not spacer.isdigit() or key == "" or text is None or key is None:
             return ""
         return self._text_uncypher() if self.cypher else self._text_cypher()
         
