@@ -8,14 +8,14 @@ def dencryption(a, b, square):
         if b in line:
             index = line.index(b)
     return Letterline[index]
-    
+
 def uncypher(text, square):
     text = text.split(" ")
     text = [e for e in text if e != ""]
     result= ""
     spacer = len(text[0])
     end=2
-    if list(map(len, text))[-2] == spacer:
+    if list(map(len, text))[-1] == spacer:
         end=1   
     if len(text) >2:
         for i in range(0,len(text)-end,2):
@@ -31,8 +31,9 @@ def uncypher(text, square):
     last = text[-1]
     lenLast = len(last)//2
     last = [last[:lenLast],last[lenLast:]]
-   
-    for i in range(lenLast):
-        result += dencryption(last[0][i], last[1][i], square)
+     
+    if len(last[:lenLast]) == len(last[lenLast:]):
+        for i in range(lenLast):
+            result += dencryption(last[0][i], last[1][i], square)
 
     return result
