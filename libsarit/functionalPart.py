@@ -5,6 +5,7 @@ import re
 try:
     import unidecode
 except ImportError:
+    # nif import fail we try to install the module
     import os
     import platform
 
@@ -12,7 +13,7 @@ except ImportError:
         os.system("pip install -r requirements.txt")
     else:
         os.system("pip3 install -r requirements.txt")
-except Exception as e:
+except OSError as e:
     print(e, "please install requirements.txt")
 finally:
     import unidecode
