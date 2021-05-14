@@ -48,8 +48,7 @@ def generate_grid(e):
                 index += 1
         grid_display()
 
-passWord.bind("<Key>", generate_grid)
-passWord.bind("<Motion>", generate_grid)
+passWord.bind("<KeyRelease>", generate_grid)
 
 #-------------------Fonctionnalités de mise en forme------------------#
 def deleter():
