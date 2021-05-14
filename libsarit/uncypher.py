@@ -11,29 +11,18 @@ def dencryption(a, b, square):
 
 def uncypher(text, square):
     text = text.split(" ")
-    text = [e for e in text if e != ""]
-    result= ""
-    spacer = len(text[0])
-    end=2
-    if list(map(len, text))[-1] == spacer:
-        end=1   
-    if len(text) >2:
-        for i in range(0,len(text)-end,2):
-            for j in range(0, spacer):
-                    
-                result += dencryption(text[i][j],text[i+1][j], square)
-    else:
-        text = ["".join(text)]
-    if end == 2:
-        last = text[-2] + text[-1]
+    result = ""
+    last = text[-2]+text[-1]
+    text.remove(text[-2])
+    text.remove(text[-1])
     
-    # decrypte the last caractere 
-    last = text[-1]
-    lenLast = len(last)//2
-    last = [last[:lenLast],last[lenLast:]]
-     
-    if len(last[:lenLast]) == len(last[lenLast:]):
-        for i in range(lenLast):
-            result += dencryption(last[0][i], last[1][i], square)
+    for i in range(0, len(text)-2, 2):
 
-    return result
+        for a, b in zip(text[i], text[i+1]):
+            result += dencryption(a, b, square)
+    
+    print(last)
+    for a, b in zip():
+        result += dencryption(a, b, square)
+    print(result)
+    return ""
