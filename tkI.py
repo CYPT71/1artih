@@ -1,11 +1,14 @@
-from tkinter import Text, INSERT, Canvas, ttk, Tk
+from tkinter import Text, INSERT, Canvas, ttk, Tk, PhotoImage
 from libsarit import TextCypher, makeSquare
 import tkinter.font
 
 root = Tk()
 root.title("1ARI-project Colon program")
 root.resizable(False, False)
-root.iconbitmap(r"./dcode.ico")
+
+img = PhotoImage("./dcode.ico")
+
+root.iconphoto(False, img)
 
 # ---------------------------------------------------Frames---------------------------------------------------#
 
