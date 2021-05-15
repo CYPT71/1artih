@@ -1,28 +1,23 @@
-
 def dencryption(a, b, square):
-    a,b, index = a.lower(),b.lower(), 0
-    Letterline = []
-    for line in square:
-        if a in line:
-            Letterline = line
-        if b in line:
-            index = line.index(b)
-    return Letterline[index]
+    a,b = a.lower(),b.lower()
+    for sub in square:
+        if a in sub:
+            x = square.index(sub)
+        if b in sub:
+            y = sub.index(b)
+    return square[x][y]
 
 def uncypher(text, square):
-    text = text.split(" ")
-    result = ""
-    last = text[-2]+text[-1]
-    text.remove(text[-2])
-    text.remove(text[-1])
-    
-    for i in range(0, len(text)-2, 2):
+    if isinstance(text, str): text = text.split(" ")
 
-        for a, b in zip(text[i], text[i+1]):
-            result += dencryption(a, b, square)
+    if text == []: return ""
+
+    if len(text)==1:
+        t=text[0]
+        text, x, y = [], t[:len(t)//2], t[len(t)//2:]
+    else:
+        x, y = text[0],text[1]
+        for _ in range(2): text.pop(0)
     
-    print(last)
-    for a, b in zip():
-        result += dencryption(a, b, square)
-    print(result)
-    return ""
+    return "".join(dencryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
+
