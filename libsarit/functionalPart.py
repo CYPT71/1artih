@@ -22,7 +22,7 @@ finally:
 def makeSquare(key):
     # ord and extract letters 
 
-    lettersKeys = list(dict.fromkeys(removeTransform(key).replace("w", "vv")))
+    lettersKeys = list(dict.fromkeys(removeTransform(key).replace("w", "v")))
 
     letters = lettersKeys + [l for l in string.ascii_lowercase if l not in lettersKeys and l != "w"]
 
