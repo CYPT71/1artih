@@ -3,6 +3,9 @@ from libsarit import TextCypher, makeSquare
 import tkinter.font
 
 root = Tk()
+root.title("1ARI-project Colon program")
+root.resizable(False, False)
+root.iconbitmap(r"./dcode.ico")
 
 # ---------------------------------------------------Frames---------------------------------------------------#
 
@@ -11,6 +14,7 @@ key = ttk.Frame(root)
 buttons_interface = ttk.Frame(root)
 result_text = ttk.Frame(root)
 grid = ttk.Frame(root)
+infos = ttk.Frame(root)
 
 # ---------------------------------------------------Widgets---------------------------------------------------#
 
@@ -24,6 +28,8 @@ text_entry = Text(base_text, width=60, height=10)
 passWord = ttk.Entry(key, width=25)
 number = ttk.Entry(key, width=10)
 result_entry = Text(result_text, width=60, height=10)
+
+informations = ttk.Label(infos, text="Use 'Arrow up' to uncypher and 'Arrow down' to\n cypher, you must enter a text key and a length.")
 
 # ---------------------------------------------------Functions----------------------------------------------------------#
 
@@ -50,6 +56,7 @@ def generate_grid(e):
 
 passWord.bind("<KeyRelease>", generate_grid)
 
+
 #-------------------Fonctionnalités de mise en forme------------------#
 def deleter():
     result_entry.delete("1.0", "end")
@@ -62,7 +69,7 @@ def cypher():
     result_entry.delete("1.0", "end")
     result_entry.insert(INSERT, TextCypher(text_entry.get("1.0", "end"), passWord.get(), number.get(), False))
 
-def uncypher():
+def uncypher(e = None):
     text_entry.delete("1.0", "end")
     text_entry.insert(INSERT, TextCypher(result_entry.get("1.0", "end"), passWord.get(), number.get(), True))
 
@@ -72,13 +79,16 @@ uncypherText = ttk.Button(buttons_interface, text="uncypher", command= uncypher 
 cypherText = ttk.Button(buttons_interface, text="cypher", command= cypher)
 delete = ttk.Button(buttons_interface, text="delete", command= deleter)
 
+root.bind("<Up>", uncypher)
+root.bind("<Down>", cypher)
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
 base_text.grid(row=0, column=0)
 key.grid(row=1, column=0)
 buttons_interface.grid(row=2, column=0)
 result_text.grid(row=3, column=0)
-grid.grid(row=0, column=2, rowspan=3)
+grid.grid(row=0, column=1)
+infos.grid(row=3, column=1)
 
 text_label.grid(row=0, column=0, sticky='w')
 key_entry.grid(row=0, column=0)
@@ -90,6 +100,7 @@ text_entry.grid(row=1, column=0, padx=5, pady=5)
 passWord.grid(row=0, column=1, padx=(0, 20))
 number.grid(row=0, column=3)
 result_entry.grid(row=4, column=0, padx=5, pady=5)
+informations.grid(row=0, column=1)
 
 cypherText.grid(row=0, column=0)
 uncypherText.grid(row=0, column=1)
