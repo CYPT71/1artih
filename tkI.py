@@ -68,7 +68,7 @@ def deleter():
     number.delete(0, "end")
     generate_grid(None)
 
-def cypher():
+def cypher(e = None):
     result_entry.delete("1.0", "end")
     result_entry.insert(INSERT, TextCypher(text_entry.get("1.0", "end"), passWord.get(), number.get(), False))
 
