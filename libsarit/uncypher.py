@@ -9,7 +9,7 @@ def dencryption(a, b, square):
 
 def uncypher(text, square):
     if isinstance(text, str): text = text.split(" ")
-    
+
     if text == []: return ""
     lenTest = len(text[0]) != len(text[1])
     if len(text)==1 or lenTest:

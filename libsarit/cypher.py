@@ -7,7 +7,7 @@ def encryption(letter, square):
 
 def cypher(text, square):
     x, y, mainStr = "", "", ""
-    for letter in text.replace("w", "vv"):
+    for letter in text.replace("w", "v"):
         if letter == " ":
             mainStr += (x +" "+ y+" ")            
             x, y = "", ""
