@@ -1,12 +1,15 @@
 from tkinter import Text, INSERT, Canvas, ttk, Tk
 from libsarit import TextCypher, makeSquare
 import tkinter.font
+import warnings
 
 root = Tk()
 root.title("1ARI-project Colon program")
 root.resizable(False, False)
-root.iconbitmap(r"./dcode.ico")
-
+try:
+    root.iconbitmap(r"./dcode.ico")
+except:
+    warnings.warn("Caution you don't have any title bar icon")
 # ---------------------------------------------------Frames---------------------------------------------------#
 
 base_text = ttk.Frame(root)
