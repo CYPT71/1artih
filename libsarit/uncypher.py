@@ -9,11 +9,11 @@ def dencryption(a, b, square):
 
 def uncypher(text, square):
     if isinstance(text, str): text = text.split(" ")
-
+    
     if text == []: return ""
-
-    if len(text)==1:
-        t=text[0]
+    lenTest = len(text[0]) != len(text[1])
+    if len(text)==1 or lenTest:
+        t= "".join(text) if lenTest else text[0]
         text, x, y = [], t[:len(t)//2], t[len(t)//2:]
     else:
         x, y = text[0],text[1]
