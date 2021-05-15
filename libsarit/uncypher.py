@@ -9,8 +9,8 @@ def dencryption(a, b, square):
 
 def uncypher(text, square):
     if isinstance(text, str): text = text.split(" ")
-
     if text == []: return ""
+    
     if len(text)==1:
         t=  text[0]
         text, x, y = [], t[:len(t)//2], t[len(t)//2:]
