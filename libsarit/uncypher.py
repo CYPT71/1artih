@@ -11,11 +11,14 @@ def uncypher(text, square):
     if isinstance(text, str): text = text.split(" ")
 
     if text == []: return ""
-    lenTest = len(text[0]) != len(text[1])
-    if len(text)==1 or lenTest:
-        t= "".join(text) if lenTest else text[0]
+    if len(text)==1:
+        t=  text[0]
         text, x, y = [], t[:len(t)//2], t[len(t)//2:]
     else:
+        if len(text[0]) != len(text[1]):
+            t= "".join(text)
+            text, x, y = [], t[:len(t)//2], t[len(t)//2:]
+    
         x, y = text[0],text[1]
         for _ in range(2): text.pop(0)
     
