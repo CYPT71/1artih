@@ -6,6 +6,7 @@ import warnings
 root = Tk()
 root.title("1ARI-project Colon program")
 root.resizable(False, False)
+root.attributes('-alpha',1)
 try:
     root.iconbitmap(r"./dcode.ico")
 except:
