@@ -18,9 +18,9 @@ def uncypher(text, square):
         if len(text[0]) != len(text[1]):
             t= "".join(text)
             text, x, y = [], t[:len(t)//2], t[len(t)//2:]
-    
-        x, y = text[0],text[1]
-        for _ in range(2): text.pop(0)
+        else:
+            x, y = text[0],text[1]
+            for _ in range(2): text.pop(0)
     
     return "".join(dencryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
 
