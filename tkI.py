@@ -1,5 +1,8 @@
-from tkinter import Text, INSERT, Canvas, ttk, Tk
+from tkinter import Text, INSERT, Canvas, ttk, Tk, Menu
+from tkinter.constants import END
 import tkinter.font as tkFont
+from tkinter.filedialog import asksaveasfile, askopenfilename
+import json
 
 from libsarit import TextCypher, makeSquare
 import tkinter.font
@@ -10,9 +13,11 @@ root.title("1ARI-project Colon program")
 root.resizable(False, False)
 root.attributes('-alpha',1)
 try:
-    root.iconbitmap(r"./dcode.ico")
+    root.iconbitmap(r"./assets/dcode.ico")
 except:
     warnings.warn("Caution you don't have any title bar icon")
+
+
 # ---------------------------------------------------Frames---------------------------------------------------#
 
 base_text = ttk.Frame(root)
@@ -22,21 +27,30 @@ result_text = ttk.Frame(root)
 grid = ttk.Frame(root)
 infos = ttk.Frame(root)
 
+Font = tkFont.Font(family="Consolas", size=15)
+
 # ---------------------------------------------------Widgets---------------------------------------------------#
+
+
+root.option_add("+tearOff", False)
+menubar = Menu(root)
+root.config(menu = menubar)
+file = Menu(menubar)
+
+menubar.add_cascade(menu = file, label = "File")
 
 text_label = ttk.Label(base_text, text="Clear text >")
 key_entry = ttk.Label(key, text="Enter a text key >")
 length = ttk.Label(key, text="Enter a length >")
 result = ttk.Label(result_text, text="Cypher text > ")
 grid_text = ttk.Label(grid, text="Grid of letters")
-test = tkFont.Font(family="Droid")
+informations = ttk.Label(infos, text="Use 'Arrow up'\n to uncypher\n and\n 'Arrow down'\n to cypher.\n")
+informations.configure(font=Font, width=20)
 
-text_entry = Text(base_text, width=60, height=10)
-passWord = ttk.Entry(key, width=25, font=test)
-number = ttk.Entry(key, width=10)
-result_entry = Text(result_text, width=60, height=10)
-
-informations = ttk.Label(infos, text="Use 'Arrow up' to uncypher and 'Arrow down' to\n cypher, you must enter a text key and a length.")
+text_entry = Text(base_text, width=60, height=10, font=Font)
+passWord = ttk.Entry(key, width=25, font=Font)
+number = ttk.Entry(key, width=10, font=Font)
+result_entry = Text(result_text, width=60, height=10, font=Font)
 
 # ---------------------------------------------------Functions----------------------------------------------------------#
 
@@ -80,7 +94,7 @@ def uncypher(e = None):
     text_entry.delete("1.0", "end")
     text_entry.insert(INSERT, TextCypher(result_entry.get("1.0", "end"), passWord.get(), number.get(), True))
 
-#-------------------Fonctinalités principales---------------------#
+#-------------------Fonctinalitées principales---------------------#
 
 uncypherText = ttk.Button(buttons_interface, text="uncypher", command= uncypher )
 cypherText = ttk.Button(buttons_interface, text="cypher", command= cypher)
@@ -88,6 +102,51 @@ delete = ttk.Button(buttons_interface, text="delete", command= deleter)
 
 root.bind("<Up>", uncypher)
 root.bind("<Down>", cypher)
+
+#-------------------Fonctinalitées bonus---------------------#
+
+def set_key(text):
+    passWord.delete(0, END)
+    passWord.insert(0, text)
+
+def set_spacer(text):
+    number.delete(0, END)
+    number.insert(0, text)
+
+def loadFile():
+    file = askopenfilename(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
+    data = None
+    if file.split("/")[-1].endswith(".json"):
+        with open(file, "r+") as jsonFile:
+            data = json.load(jsonFile)
+
+    if data is not None:
+        set_key(data["key"])
+        text_entry.replace("1.0", "end", data["text"])
+        result_entry.replace("1.0", "end", data["cypher"])
+        set_spacer(data["spacer"])
+
+    generate_grid(e=None)
+
+def saveFile():
+    file = asksaveasfile(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
+    encoding = file.encoding
+    file = file.name
+    
+    if file.split("/")[-1].endswith(".json"):
+        data = {
+            "key": passWord.get(),
+            "text": text_entry.get("1.0", "end"),
+            "cypher": result_entry.get("1.0", "end"),
+            "spacer": number.get(),
+        }
+
+        with open(file, "w+") as jsonFile:
+            json.dump(data, jsonFile, indent=4)
+
+file.add_command(label = "Load", command = loadFile)
+file.add_command(label = "Save", command = saveFile)
+
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
 base_text.grid(row=0, column=0)

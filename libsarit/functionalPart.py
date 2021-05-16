@@ -28,7 +28,7 @@ def removeTransform(text):
 
 def makeSquare(key):
     # ord and extract letters 
-    key = removeTransform(key).replace("w", "")
+    key = removeTransform(key).replace("w", "v")
     letters = (lettersKeys := sorted(set(key),key=key.index)) + [l for l in string.ascii_lowercase if l not in lettersKeys and l != "w"]
 
     return [letters[i:i+5] for i in range(0, len(letters), 5)]
