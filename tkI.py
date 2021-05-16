@@ -36,6 +36,7 @@ root.option_add("+tearOff", False)
 menubar = Menu(root)
 root.config(menu = menubar)
 file = Menu(menubar)
+file.add_command(label = "Exit", command = root.destroy)
 
 menubar.add_cascade(menu = file, label = "File")
 
