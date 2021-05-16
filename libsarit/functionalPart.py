@@ -21,22 +21,10 @@ finally:
 
 def makeSquare(key):
     # ord and extract letters 
+    key = key.lower().replace("w", "").replace(" ", "")
+    letters = (lettersKeys := sorted(set(key),key=key.index)) + [l for l in string.ascii_lowercase if l not in lettersKeys and l != "w"]
 
-    lettersKeys = list(dict.fromkeys(removeTransform(key).replace("w", "v")))
-
-    letters = lettersKeys + [l for l in string.ascii_lowercase if l not in lettersKeys and l != "w"]
-
-    # create the square
-    square = []
-    sub = letters[:5]
-    for l in letters:
-        if len(sub) > 4:
-            sub = []
-            square.append(sub)
-
-        sub.append(l)
-
-    return square
+    return [letters[i:i+5] for i in range(0, len(letters), 5)]
 
 
 def removeTransform(text):
