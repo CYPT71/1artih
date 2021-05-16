@@ -16,8 +16,5 @@ def cypher(text, square):
     lastChar = x + y
     
     spacer = len(text.split(" ")[0])
-    endPass = lastChar[:spacer] + " " + lastChar[spacer:]
     
-    mainStr += endPass
-    return mainStr
-
+    return mainStr + lastChar[:spacer] + " " + lastChar[spacer:]
