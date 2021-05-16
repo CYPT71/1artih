@@ -1,4 +1,6 @@
 from tkinter import Text, INSERT, Canvas, ttk, Tk
+import tkinter.font as tkFont
+
 from libsarit import TextCypher, makeSquare
 import tkinter.font
 import warnings
@@ -27,9 +29,10 @@ key_entry = ttk.Label(key, text="Enter a text key >")
 length = ttk.Label(key, text="Enter a length >")
 result = ttk.Label(result_text, text="Cypher text > ")
 grid_text = ttk.Label(grid, text="Grid of letters")
+test = tkFont.Font(family="Droid")
 
 text_entry = Text(base_text, width=60, height=10)
-passWord = ttk.Entry(key, width=25)
+passWord = ttk.Entry(key, width=25, font=test)
 number = ttk.Entry(key, width=10)
 result_entry = Text(result_text, width=60, height=10)
 
