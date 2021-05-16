@@ -19,19 +19,19 @@ finally:
     import unidecode
 
 
-def makeSquare(key):
-    # ord and extract letters 
-    key = key.lower().replace("w", "")
-    letters = (lettersKeys := sorted(set(key),key=key.index)) + [l for l in string.ascii_lowercase if l not in lettersKeys and l != "w"]
-
-    return [letters[i:i+5] for i in range(0, len(letters), 5)]
-
-
 def removeTransform(text):
     # replace accentuted word
     text = unidecode.unidecode(text)
     # return only letter in lower case 
     return re.sub('[^A-Za-z]+', '', text).lower()
+
+
+def makeSquare(key):
+    # ord and extract letters 
+    key = removeTransform(key).replace("w", "")
+    letters = (lettersKeys := sorted(set(key),key=key.index)) + [l for l in string.ascii_lowercase if l not in lettersKeys and l != "w"]
+
+    return [letters[i:i+5] for i in range(0, len(letters), 5)]
 
 def cutter(text, n):
     return ' '.join((text := removeTransform(text))[i:i + n] for i in range(0, len(text), n))
