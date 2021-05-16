@@ -6,8 +6,9 @@ from .uncypher import uncypher
 class TextCypher:
 
     def __init__(self, text, key, spacer, is_cypher=False):
-        if not spacer.isdigit():
-            spacer = "5"
+        if isinstance(spacer, str):
+            if not spacer.isdigit():
+                spacer = "5"
         
         self.text = cutter(text, int(spacer))
         self.key = makeSquare(key)
