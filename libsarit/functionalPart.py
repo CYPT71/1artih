@@ -34,7 +34,4 @@ def removeTransform(text):
     return re.sub('[^A-Za-z]+', '', text).lower()
 
 def cutter(text, n):
-    # transform the text 
-    text = removeTransform(text)
-    # return the text cutted with the right space 
-    return ' '.join(text[i:i + n] for i in range(0, len(text), n))
+    return ' '.join((text := removeTransform(text))[i:i + n] for i in range(0, len(text), n))
