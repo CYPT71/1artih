@@ -21,7 +21,7 @@ finally:
 
 def makeSquare(key):
     # ord and extract letters 
-    key = key.lower().replace("w", "").replace(" ", "")
+    key = key.lower().replace("w", "")
     letters = (lettersKeys := sorted(set(key),key=key.index)) + [l for l in string.ascii_lowercase if l not in lettersKeys and l != "w"]
 
     return [letters[i:i+5] for i in range(0, len(letters), 5)]
