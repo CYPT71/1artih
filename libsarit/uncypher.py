@@ -1,11 +1,7 @@
 def dencryption(a, b, square):
-    a,b = a.lower(),b.lower()
-    for sub in square:
-        if a in sub:
-            x = square.index(sub)
-        if b in sub:
-            y = sub.index(b)
-    return square[x][y]
+    i = -1
+    while (i := i+1) < len(square):
+        if a.lower() in square[i] : return square[i][square[-1].index(b.lower())]
 
 def uncypher(text, square):
     if isinstance(text, str): text = text.split(" ")
