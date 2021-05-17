@@ -66,23 +66,23 @@ fontList = tkFont.families()
 fontIndex = 0
 size = 0
 
-def changePolice(fontIndex):
-#    global fontIndexi
-#    fontIndex = (fontIndex+1)%len(fontList)
+def changePolice(index):
+    global fontIndex
+    fontIndex = index
     print(fontList[fontIndex])
     text_entry.configure(font=(fontList[fontIndex], size))
     passWord.configure(font=(fontList[fontIndex], size))
     number.configure(font=(fontList[fontIndex], size))
-
+    result_entry.configure(font=(fontIndex[fontIndex], size))
 def changeSize(plus=True):
     global size
     size = size +1 if plus else size - 1
-
+    changePolice(fontIndex)
 for i, font in enumerate(fontList):
     policeMenu.add_command(label=font, command= lambda : changePolice(i))
 
-policeMenu.add_command(label="More", command= lambda : changeSize())
-policeMenu.add_command(label="Less", command= lambda : changeSize(plus=False))
+settings.add_command(label="More", command= lambda : changeSize())
+settings.add_command(label="Less", command= lambda : changeSize(plus=False))
 
 
 # ---------------------------------------------------Functions----------------------------------------------------------#
