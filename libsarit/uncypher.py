@@ -25,7 +25,7 @@ def uncypher(text, square):
     try:
         return "".join(dencryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
     except:
-        return "NTM tu as changé la clef tu veux que je te bute sérieux là"
+        return "Vous avez changé la clé"
 
     
     return "".join(dencryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
