@@ -3,6 +3,7 @@ from tkinter.constants import END
 import tkinter.font as tkFont
 from tkinter.filedialog import asksaveasfile, askopenfilename
 import json
+from typing_extensions import IntVar
 
 from libsarit import TextCypher, makeSquare
 import tkinter.font
@@ -37,16 +38,15 @@ file.add_command(label = "Exit", command = root.destroy)
 
 menubar.add_cascade(menu = file, label = "File")
 
-settings = Menu(menubar, tearoff=0)
-menubar.add_cascade(menu = settings, label = "Settings")
-
-policeMenu = Menu(settings, tearoff=0)
-settings.add_cascade(menu=policeMenu, label = "Police")
+policeMenu = Menu(menubar, tearoff=0)
+menubar.add_cascade(menu=policeMenu, label = "Police")
 
 fontList = tkFont.families()
 
 fontIndex = 0
+
 size = 12
+taille = ttk.Entry(buttons_interface, width=5)
 
 def changePolice(index):
     global fontIndex
@@ -56,21 +56,24 @@ def changePolice(index):
     passWord.configure(font=(fontList[fontIndex], size))
     number.configure(font=(fontList[fontIndex], size))
     result_entry.configure(font=(fontList[fontIndex], size))
+    taille.configure(font=(fontList[fontIndex], size))
     generate_grid(e=None)
 
 def changeSize(plus=True):
     global size
-    size = size + 7 if plus else size - 7
+    if (t := taille.get()).isdigit(): 
+        size = int(t)
+        taille.delete(0, END)
+    else: size = size + 6 if plus else size - 6
     changePolice(fontIndex)
 
 for i, font in enumerate(fontList):
     policeMenu.add_command(label=font, command= lambda i=i: changePolice(i))
 
-settings.add_command(label="More", command= lambda : changeSize())
-settings.add_command(label="Less", command= lambda : changeSize(plus=False))
 
 root.bind("<Control-Up>", changeSize)
 root.bind("<Control-Down>", lambda e: changeSize(plus=False))
+taille.bind("<Return>", changeSize)
 
 # ---------------------------------------------------Widgets---------------------------------------------------#
 
@@ -79,7 +82,7 @@ key_entry = ttk.Label(key, text="Enter a text key >")
 length = ttk.Label(key, text="Enter a length >")
 result = ttk.Label(result_text, text="Cypher text > ")
 grid_text = ttk.Label(grid, text="Grid of letters")
-informations = ttk.Label(infos, text="Use 'Arrow up'\n to uncypher\n and\n 'Arrow down'\n to cypher.\n")
+informations = ttk.Label(infos, text="Use " + u"\u2193" + " to uncypher\n and " + u"\u2191" + " to cypher.")
 informations.configure(font=("Consolas", 16))
 
 text_entry = Text(base_text, width=60, height=10, font=Font)
@@ -132,6 +135,8 @@ def uncypher(e = None):
 uncypherText = ttk.Button(buttons_interface, text="uncypher", command= uncypher )
 cypherText = ttk.Button(buttons_interface, text="cypher", command= cypher)
 delete = ttk.Button(buttons_interface, text="delete", command= deleter)
+more = ttk.Button(buttons_interface, text=u"\u25B2", command= lambda : changeSize())
+less = ttk.Button(buttons_interface, text=u"\u25BC", command= lambda : changeSize(plus=False))
 
 root.bind("<Up>", uncypher)
 root.bind("<Down>", cypher)
@@ -158,12 +163,10 @@ def loadFile():
         text_entry.replace("1.0", "end", data["text"])
         result_entry.replace("1.0", "end", data["cypher"])
         set_spacer(data["spacer"])
-
-    generate_grid(e=None)
+        generate_grid(e=None)
 
 def saveFile():
     file = asksaveasfile(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
-    encoding = file.encoding
     file = file.name
     
     if file.split("/")[-1].endswith(".json"):
@@ -196,14 +199,19 @@ result.grid(row=0, column=0, sticky='w')
 grid_text.grid(row=0, column=0)
 
 text_entry.grid(row=1, column=0, padx=5, pady=5)
+
 passWord.grid(row=0, column=1, padx=(0, 20))
 number.grid(row=0, column=3)
+taille.grid(row=0, column=4)
+
 result_entry.grid(row=4, column=0, padx=5, pady=5)
 informations.grid(row=0, column=1)
 
 cypherText.grid(row=0, column=0)
 uncypherText.grid(row=0, column=1)
 delete.grid(row=0, column=2)
+less.grid(row=0, column=3)
+more.grid(row=0, column=5)
 
 grille.grid(row=1, column=0, padx=10, pady=5)
 

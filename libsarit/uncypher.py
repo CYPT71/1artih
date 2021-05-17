@@ -1,10 +1,10 @@
-def dencryption(a, b, square):
+def decryption(a, b, square):
     i = -1
     while (i := i+1) < len(square):
         if a.lower() in square[i] : 
             if b not in square[-1]:
     
-                raise Exception("NTM tu as changé de clef")
+                raise Exception("La clef a été changé")
 
             return square[i][square[-1].index(b.lower())]
 
@@ -23,9 +23,6 @@ def uncypher(text, square):
             x, y = text[0],text[1]
             for _ in range(2): text.pop(0)
     try:
-        return "".join(dencryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
+        return "".join(decryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
     except:
-        return "Vous avez changé la clé"
-
-    
-    return "".join(dencryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
+        return "Vous avez changé la clef"
