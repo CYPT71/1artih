@@ -76,7 +76,7 @@ def changePolice(index):
 
 def changeSize(plus=True):
     global size
-    size = size +1 if plus else size - 1
+    size = size + 7 if plus else size - 7
     changePolice(fontIndex)
 
 for i, font in enumerate(fontList):
@@ -85,6 +85,8 @@ for i, font in enumerate(fontList):
 settings.add_command(label="More", command= lambda : changeSize())
 settings.add_command(label="Less", command= lambda : changeSize(plus=False))
 
+root.bind("<Control-Up>", changeSize)
+root.bind("<Control-Down>", lambda e: changeSize(plus=False))
 
 # ---------------------------------------------------Functions----------------------------------------------------------#
 
