@@ -25,4 +25,3 @@ class TextCypher:
         if self.text == "" or self.key == "" or self.text is None or self.key is None:
             return ""
         return self.__text_uncypher() if self.cypher else self.__text_cypher()
-        
