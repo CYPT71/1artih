@@ -58,6 +58,7 @@ def changePolice(index):
     passWord.configure(font=(fontList[fontIndex], size))
     number.configure(font=(fontList[fontIndex], size))
     result_entry.configure(font=(fontList[fontIndex], size))
+    generate_grid(e=None)
 
 def changeSize(plus=True):
     global size
@@ -108,7 +109,7 @@ def generate_grid(e):
         var = [a for sub in makeSquare(passWord.get()) for a in sub]
         for i in range(25, 250, 50):
             for j in range(25, 250, 50):
-                grille.create_text(j, i, text=var[index])
+                grille.create_text(j, i, text=var[index], font=(fontList[fontIndex], size))
                 index += 1
         grid_display()
 
