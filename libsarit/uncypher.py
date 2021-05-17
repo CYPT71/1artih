@@ -22,12 +22,10 @@ def uncypher(text, square):
         else:
             x, y = text[0],text[1]
             for _ in range(2): text.pop(0)
-<<<<<<< HEAD
     try:
         return "".join(dencryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
     except:
         return "NTM tu as changé la clef tu veux que je te bute sérieux là"
-=======
+
     
     return "".join(dencryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
->>>>>>> aeeaac5b714d399d184517d2a2e5f1e4a465da59
