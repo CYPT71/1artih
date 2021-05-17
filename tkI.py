@@ -81,7 +81,7 @@ def changeSize(plus=True):
     changePolice(fontIndex)
 
 for i, font in enumerate(fontList):
-    policeMenu.add_command(label=font, command= lambda : changePolice(i))
+    policeMenu.add_command(label=font, command= lambda i=i: changePolice(i))
 
 settings.add_command(label="More", command= lambda : changeSize())
 settings.add_command(label="Less", command= lambda : changeSize(plus=False))
