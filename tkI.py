@@ -82,7 +82,7 @@ key_entry = ttk.Label(key, text="Enter a text key >")
 length = ttk.Label(key, text="Enter a length >")
 result = ttk.Label(result_text, text="Cypher text > ")
 grid_text = ttk.Label(grid, text="Grid of letters")
-informations = ttk.Label(infos, text="Use " + u"\u2193" + " to uncypher\n and " + u"\u2191" + " to cypher.")
+informations = ttk.Label(infos, text="Use " + u"\u2193" + " to cypher\n and " + u"\u2191" + " to uncypher.")
 informations.configure(font=("Consolas", 16))
 
 text_entry = Text(base_text, width=60, height=10, font=Font)
