@@ -29,36 +29,20 @@ infos = ttk.Frame(root)
 
 Font = tkFont.Font(family="Consolas", size=15)
 
-# ---------------------------------------------------Widgets---------------------------------------------------#
+# ---------------------------------------------------Paramètres menu---------------------------------------------------#
 
-
-root.option_add("+tearOff", False)
-menubar = Menu(root)
+menubar = Menu(root, tearoff=0)
 root.config(menu = menubar)
-file = Menu(menubar)
+file = Menu(menubar, tearoff=0)
 file.add_command(label = "Exit", command = root.destroy)
 
 menubar.add_cascade(menu = file, label = "File")
 
-text_label = ttk.Label(base_text, text="Clear text >")
-key_entry = ttk.Label(key, text="Enter a text key >")
-length = ttk.Label(key, text="Enter a length >")
-result = ttk.Label(result_text, text="Cypher text > ")
-grid_text = ttk.Label(grid, text="Grid of letters")
-informations = ttk.Label(infos, text="Use 'Arrow up'\n to uncypher\n and\n 'Arrow down'\n to cypher.\n")
-informations.configure(font=Font, width=20)
 
-text_entry = Text(base_text, width=60, height=10, font=Font)
-passWord = ttk.Entry(key, width=25, font=Font)
-number = ttk.Entry(key, width=10, font=Font)
-result_entry = Text(result_text, width=60, height=10, font=Font)
-
-
-# appeler la police 
-settings = Menu(menubar)
+settings = Menu(menubar, tearoff=0)
 menubar.add_cascade(menu = settings, label = "Settings")
 
-policeMenu = Menu(settings)
+policeMenu = Menu(settings, tearoff=0)
 settings.add_cascade(menu=policeMenu, label = "Police")
 
 fontList = tkFont.families()
@@ -87,6 +71,21 @@ settings.add_command(label="Less", command= lambda : changeSize(plus=False))
 
 root.bind("<Control-Up>", changeSize)
 root.bind("<Control-Down>", lambda e: changeSize(plus=False))
+
+# ---------------------------------------------------Widgets---------------------------------------------------#
+
+text_label = ttk.Label(base_text, text="Clear text >")
+key_entry = ttk.Label(key, text="Enter a text key >")
+length = ttk.Label(key, text="Enter a length >")
+result = ttk.Label(result_text, text="Cypher text > ")
+grid_text = ttk.Label(grid, text="Grid of letters")
+informations = ttk.Label(infos, text="Use 'Arrow up'\n to uncypher\n and\n 'Arrow down'\n to cypher.\n")
+informations.configure(font=Font, width=20)
+
+text_entry = Text(base_text, width=60, height=10, font=Font)
+passWord = ttk.Entry(key, width=25, font=Font)
+number = ttk.Entry(key, width=10, font=Font)
+result_entry = Text(result_text, width=60, height=10, font=Font)
 
 # ---------------------------------------------------Functions----------------------------------------------------------#
 
@@ -180,7 +179,7 @@ def saveFile():
         with open(file, "w+") as jsonFile:
             json.dump(data, jsonFile, indent=4)
 
-file.add_command(label = "Load", command = loadFile)
+file.add_command(label = "Open", command = loadFile)
 file.add_command(label = "Save", command = saveFile)
 
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
