@@ -53,6 +53,38 @@ passWord = ttk.Entry(key, width=25, font=Font)
 number = ttk.Entry(key, width=10, font=Font)
 result_entry = Text(result_text, width=60, height=10, font=Font)
 
+
+# appeler la police 
+settings = Menu(menubar)
+menubar.add_cascade(menu = settings, label = "Settings")
+
+policeMenu = Menu(settings)
+settings.add_cascade(menu=policeMenu, label = "Police")
+
+fontList = tkFont.families()
+
+fontIndex = 0
+size = 0
+
+def changePolice(fontIndex):
+#    global fontIndexi
+#    fontIndex = (fontIndex+1)%len(fontList)
+    print(fontList[fontIndex])
+    text_entry.configure(font=(fontList[fontIndex], size))
+    passWord.configure(font=(fontList[fontIndex], size))
+    number.configure(font=(fontList[fontIndex], size))
+
+def changeSize(plus=True):
+    global size
+    size = size +1 if plus else size - 1
+
+for i, font in enumerate(fontList):
+    policeMenu.add_command(label=font, command= lambda : changePolice(i))
+
+policeMenu.add_command(label="More", command= lambda : changeSize())
+policeMenu.add_command(label="Less", command= lambda : changeSize(plus=False))
+
+
 # ---------------------------------------------------Functions----------------------------------------------------------#
 
 #-------------------Grille de lettres------------------#
