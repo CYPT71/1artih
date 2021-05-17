@@ -69,7 +69,6 @@ size = 12
 def changePolice(index):
     global fontIndex
     fontIndex = index
-    print(fontList[fontIndex])
     text_entry.configure(font=(fontList[fontIndex], size))
     passWord.configure(font=(fontList[fontIndex], size))
     number.configure(font=(fontList[fontIndex], size))
