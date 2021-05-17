@@ -53,6 +53,7 @@ size = 12
 def changePolice(index):
     global fontIndex
     fontIndex = index
+    informations.configure(font=(fontList[fontIndex], size if size > 16 else 16))
     text_entry.configure(font=(fontList[fontIndex], size))
     passWord.configure(font=(fontList[fontIndex], size))
     number.configure(font=(fontList[fontIndex], size))
@@ -80,7 +81,8 @@ length = ttk.Label(key, text="Enter a length >")
 result = ttk.Label(result_text, text="Cypher text > ")
 grid_text = ttk.Label(grid, text="Grid of letters")
 informations = ttk.Label(infos, text="Use 'Arrow up'\n to uncypher\n and\n 'Arrow down'\n to cypher.\n")
-informations.configure(font=Font, width=20)
+informations.configure(font=("Consolas", 16))
+
 
 text_entry = Text(base_text, width=60, height=10, font=Font)
 passWord = ttk.Entry(key, width=25, font=Font)
