@@ -64,7 +64,7 @@ settings.add_cascade(menu=policeMenu, label = "Police")
 fontList = tkFont.families()
 
 fontIndex = 0
-size = 0
+size = 12
 
 def changePolice(index):
     global fontIndex
@@ -73,11 +73,13 @@ def changePolice(index):
     text_entry.configure(font=(fontList[fontIndex], size))
     passWord.configure(font=(fontList[fontIndex], size))
     number.configure(font=(fontList[fontIndex], size))
-    result_entry.configure(font=(fontIndex[fontIndex], size))
+    result_entry.configure(font=(fontList[fontIndex], size))
+
 def changeSize(plus=True):
     global size
     size = size +1 if plus else size - 1
     changePolice(fontIndex)
+
 for i, font in enumerate(fontList):
     policeMenu.add_command(label=font, command= lambda : changePolice(i))
 
