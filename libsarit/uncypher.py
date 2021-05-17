@@ -19,4 +19,3 @@ def uncypher(text, square):
             for _ in range(2): text.pop(0)
     
     return "".join(dencryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
-

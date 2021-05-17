@@ -17,7 +17,6 @@ try:
 except:
     warnings.warn("Caution you don't have any title bar icon")
 
-
 # ---------------------------------------------------Frames---------------------------------------------------#
 
 base_text = ttk.Frame(root)
@@ -37,7 +36,6 @@ file = Menu(menubar, tearoff=0)
 file.add_command(label = "Exit", command = root.destroy)
 
 menubar.add_cascade(menu = file, label = "File")
-
 
 settings = Menu(menubar, tearoff=0)
 menubar.add_cascade(menu = settings, label = "Settings")
@@ -84,7 +82,6 @@ grid_text = ttk.Label(grid, text="Grid of letters")
 informations = ttk.Label(infos, text="Use 'Arrow up'\n to uncypher\n and\n 'Arrow down'\n to cypher.\n")
 informations.configure(font=("Consolas", 16))
 
-
 text_entry = Text(base_text, width=60, height=10, font=Font)
 passWord = ttk.Entry(key, width=25, font=Font)
 number = ttk.Entry(key, width=10, font=Font)
@@ -94,7 +91,6 @@ result_entry = Text(result_text, width=60, height=10, font=Font)
 
 #-------------------Grille de lettres------------------#
 grille = Canvas(grid, height=250, width=250, bg="white")
-
 
 def grid_display():
     for i in range(0, 250, 50):
@@ -114,7 +110,6 @@ def generate_grid(e):
         grid_display()
 
 passWord.bind("<KeyRelease>", generate_grid)
-
 
 #-------------------Fonctionnalités de mise en forme------------------#
 def deleter():
