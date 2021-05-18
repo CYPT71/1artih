@@ -11,11 +11,7 @@ import warnings
 root = Tk()
 root.title("1ARI-project Colon program")
 root.resizable(False, False)
-root.attributes('-alpha',1)
-try:
-    root.iconbitmap(r"./assets/dcode.ico")
-except:
-    warnings.warn("Caution you don't have any title bar icon")
+root.attributes('-alpha',0.90)
 
 # ---------------------------------------------------Frames---------------------------------------------------#
 
@@ -76,11 +72,11 @@ taille.bind("<Return>", changeSize)
 
 # ---------------------------------------------------Widgets---------------------------------------------------#
 
-text_label = ttk.Label(base_text, text="Clear text >")
-key_entry = ttk.Label(key, text="Enter a text key >")
-length = ttk.Label(key, text="Enter a length >")
-result = ttk.Label(result_text, text="Cypher text > ")
-grid_text = ttk.Label(grid, text="Grid of letters")
+text_label = ttk.Label(base_text, text=u"Clear text \u261F")
+key_entry = ttk.Label(key, text=u"Enter a text key \u261E")
+length = ttk.Label(key, text=u"Enter a length \u261E")
+result = ttk.Label(result_text, text=u"Cypher text \u261F")
+grid_text = ttk.Label(grid, text=u"Key Grid \u0DAC")
 informations = ttk.Label(infos, text="Use " + u"\u2193" + " to cypher\n and " + u"\u2191" + " to uncypher.")
 informations.configure(font=("Consolas", 16))
 
@@ -114,7 +110,7 @@ def generate_grid(e):
 passWord.bind("<KeyRelease>", generate_grid)
 
 #-------------------Fonctionnalités de mise en forme------------------#
-def deleter():
+def deleter(e = None):
     result_entry.delete("1.0", "end")
     text_entry.delete("1.0", "end")
     passWord.delete(0, "end")
@@ -139,7 +135,7 @@ less = ttk.Button(buttons_interface, text=u"\u25BC", command= lambda : changeSiz
 
 root.bind("<Up>", uncypher)
 root.bind("<Down>", cypher)
-
+root.bind("<Control-BackSpace>", deleter)
 #-------------------Fonctinalitées bonus---------------------#
 
 def set_key(text):
@@ -150,7 +146,7 @@ def set_spacer(text):
     number.delete(0, END)
     number.insert(0, text)
 
-def loadFile():
+def loadFile(e=None):
     file = askopenfilename(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
     data = None
     if file.split("/")[-1].endswith(".json"):
@@ -164,8 +160,10 @@ def loadFile():
         set_spacer(data["spacer"])
         generate_grid(e=None)
 
-def saveFile():
+def saveFile(e=None):
     file = asksaveasfile(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
+    if file == None:
+        return
     file = file.name
     
     if file.split("/")[-1].endswith(".json"):
@@ -181,7 +179,9 @@ def saveFile():
 
 file.add_command(label = "Open", command = loadFile)
 file.add_command(label = "Save", command = saveFile)
-
+root.bind("<Control-s>", saveFile)
+root.bind("<Control-o>", loadFile)
+root.bind("<Control-q>", lambda e: root.destroy())
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
 base_text.grid(row=0, column=0)
