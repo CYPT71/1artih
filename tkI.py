@@ -48,31 +48,17 @@ def changePolice(index):
     fontIndex = index
     font = tkFont.Font(family=fontList[fontIndex], size=size)
     informations.configure(font=(fontList[fontIndex], size if size > 16 else 16))
-    text_entry.configure(font=font)
-    passWord.configure(font=font)
-    number.configure(font=font)
-    result_entry.configure(font=font)
-    taille.configure(font=font)
-    text_label.configure(font=font)
-    key_entry.configure(font=font)
-    length.configure(font=font)
-    result.configure(font=font)
-    informations.configure(font=font)
-    uncypherText['font'] = font
-    cypherText['font'] = font
-    more['font'] = font
-    less['font'] = font
-    delete['font'] = font
+    for elem in [text_entry, passWord, number, result_entry, taille, text_label, \
+        key_entry, length, result, uncypherText, cypherText, more, less, delete, grid_text]:
+        elem['font'] = font
 
     generate_grid(e=None)
 
 def changeSize(plus=True):
     global size
-    if (t := taille.get()).isdigit(): 
-        size = int(t)
-        taille.delete(0, END)
-    else: size = size + 6 if plus else size - 6
+    size = int(t) if (t := taille.get()).isdigit() else ((size + 5 if plus and size < 19 else size - 5) if size > 0 else 10)
     changePolice(fontIndex)
+    taille.delete(0, END)
 
 for i, font in enumerate(fontList):
     policeMenu.add_command(label=font, command= lambda i=i: changePolice(i))
@@ -89,7 +75,7 @@ key_entry = ttk.Label(key, text=u"Enter a text key \u261E")
 length = ttk.Label(key, text=u"Enter a length \u261E")
 result = ttk.Label(result_text, text=u"Cypher text \U0001F512")
 grid_text = ttk.Label(grid, text=u"Key Grid \u26BF")
-informations = ttk.Label(infos, text="Use " + u"\u2193" + " to cypher\n and " + u"\u2191" + " to uncypher.")
+informations = ttk.Label(infos, text="Use " + u"\U0001F80B" + " to cypher\n and " + u"\U0001F809" + " to uncypher.")
 informations.configure(font=("Consolas", 16))
 
 text_entry = Text(base_text, width=60, height=10, font=Font)
@@ -189,8 +175,8 @@ def saveFile(e=None):
         with open(file, "w+") as jsonFile:
             json.dump(data, jsonFile, indent=4)
 
-file.add_command(label = "Open", command = loadFile)
-file.add_command(label = "Save", command = saveFile)
+file.add_command(label = u"\U0001F5C1 Open", command = loadFile)
+file.add_command(label = u"\U0001F5AB Save", command = saveFile)
 root.bind("<Control-s>", saveFile)
 root.bind("<Control-o>", loadFile)
 root.bind("<Control-q>", lambda e: root.destroy())
