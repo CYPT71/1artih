@@ -11,7 +11,7 @@ import warnings
 root = Tk()
 root.title("1ARI-project Colon program")
 root.resizable(False, False)
-root.attributes('-alpha',0.90)
+root.attributes('-alpha',0.94)
 
 # ---------------------------------------------------Frames---------------------------------------------------#
 
@@ -29,9 +29,9 @@ Font = tkFont.Font(family="Consolas", size=15)
 menubar = Menu(root, tearoff=0)
 root.config(menu = menubar)
 file = Menu(menubar, tearoff=0)
-file.add_command(label = "Exit", command = root.destroy)
+menubar.add_cascade(label = u"\u2717", command = root.destroy)
 
-menubar.add_cascade(menu = file, label = "File")
+menubar.add_cascade(menu = file, label = u"\U0001F4C1")
 
 policeMenu = Menu(menubar, tearoff=0)
 menubar.add_cascade(menu=policeMenu, label = u"\u2699")
