@@ -34,7 +34,7 @@ file.add_command(label = "Exit", command = root.destroy)
 menubar.add_cascade(menu = file, label = "File")
 
 policeMenu = Menu(menubar, tearoff=0)
-menubar.add_cascade(menu=policeMenu, label = "Police")
+menubar.add_cascade(menu=policeMenu, label = u"\u2699")
 
 fontList = tkFont.families()
 
@@ -72,11 +72,11 @@ taille.bind("<Return>", changeSize)
 
 # ---------------------------------------------------Widgets---------------------------------------------------#
 
-text_label = ttk.Label(base_text, text=u"Clear text \u261F")
+text_label = ttk.Label(base_text, text=u"Clear text \U0001F513")
 key_entry = ttk.Label(key, text=u"Enter a text key \u261E")
 length = ttk.Label(key, text=u"Enter a length \u261E")
-result = ttk.Label(result_text, text=u"Cypher text \u261F")
-grid_text = ttk.Label(grid, text=u"Key Grid \u0DAC")
+result = ttk.Label(result_text, text=u"Cypher text \U0001F512")
+grid_text = ttk.Label(grid, text=u"Key Grid \u26BF")
 informations = ttk.Label(infos, text="Use " + u"\u2193" + " to cypher\n and " + u"\u2191" + " to uncypher.")
 informations.configure(font=("Consolas", 16))
 
