@@ -40,7 +40,7 @@ fontList = tkFont.families()
 
 fontIndex = 0
 
-size = 12
+size = 10
 taille = ttk.Entry(buttons_interface, width=5)
 
 def changePolice(index):
@@ -56,7 +56,7 @@ def changePolice(index):
 
 def changeSize(plus=True):
     global size
-    size = int(t) if (t := taille.get()).isdigit() else ((size + 5 if plus and size < 19 else size - 5) if size > 0 else 10)
+    size = int(t)%20 if (t := taille.get()).isdigit() else ((size + 6 if plus and size < 18 else size - 6) if size > 7 else 10)
     changePolice(fontIndex)
     taille.delete(0, END)
 
