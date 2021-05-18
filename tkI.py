@@ -52,6 +52,12 @@ def changePolice(index):
     number.configure(font=(fontList[fontIndex], size))
     result_entry.configure(font=(fontList[fontIndex], size))
     taille.configure(font=(fontList[fontIndex], size))
+    text_label.configure(font=(fontList[fontIndex], size))
+    key_entry.configure(font=(fontList[fontIndex], size))
+    length.configure(font=(fontList[fontIndex], size))
+    result.configure(font=(fontList[fontIndex], size))
+    informations.configure(font=(fontList[fontIndex], size))
+    
     generate_grid(e=None)
 
 def changeSize(plus=True):
