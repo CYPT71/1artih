@@ -56,7 +56,7 @@ def changePolice(index):
 
 def changeSize(plus=True):
     global size
-    size = int(t)%20 if (t := taille.get()).isdigit() else ((size + 6 if plus and size < 18 else size - 6) if size > 7 else 10)
+    size = int(t)%20 if (t := taille.get()).isdigit() else ((size + 5 if plus and size < 18 else size - 5) if size > 7 else 16)
     changePolice(fontIndex)
     taille.delete(0, END)
 
@@ -127,7 +127,7 @@ def uncypher(e = None):
 
 uncypherText = Button(buttons_interface, text="uncypher", command= uncypher )
 cypherText = Button(buttons_interface, text="cypher", command= cypher)
-delete = Button(buttons_interface, text="delete", command= deleter)
+delete = Button(buttons_interface, text=u"\U0001F5D1", command= deleter)
 more = Button(buttons_interface, text=u"\u25B2", command= lambda : changeSize())
 less = Button(buttons_interface, text=u"\u25BC", command= lambda : changeSize(plus=False))
 
