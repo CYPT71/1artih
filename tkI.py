@@ -1,9 +1,8 @@
-from tkinter import Text, INSERT, Canvas, ttk, Tk, Menu
+from tkinter import Text, INSERT, Canvas, ttk, Tk, Menu, IntVar
 from tkinter.constants import END
 import tkinter.font as tkFont
 from tkinter.filedialog import asksaveasfile, askopenfilename
 import json
-from typing_extensions import IntVar
 
 from libsarit import TextCypher, makeSquare
 import tkinter.font
