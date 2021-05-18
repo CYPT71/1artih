@@ -1,4 +1,4 @@
-from tkinter import Text, INSERT, Canvas, ttk, Tk, Menu, IntVar, Button
+from tkinter import Label, Text, INSERT, Canvas, ttk, Tk, Menu, Button, Toplevel
 from tkinter.constants import END
 import tkinter.font as tkFont
 from tkinter.filedialog import asksaveasfile, askopenfilename
@@ -12,6 +12,7 @@ root = Tk()
 root.title("1ARI-project Colon program")
 root.resizable(False, False)
 root.attributes('-alpha',0.94)
+root.state("iconic")
 
 # ---------------------------------------------------Frames---------------------------------------------------#
 
@@ -180,6 +181,15 @@ file.add_command(label = u"\U0001F5AB Save", command = saveFile)
 root.bind("<Control-s>", saveFile)
 root.bind("<Control-o>", loadFile)
 root.bind("<Control-q>", lambda e: root.destroy())
+
+def fun(e):
+    window = Toplevel(root)
+    window.title("New Window")
+    window.lift(root)
+
+    Label(window, text=(u"\u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n"), font=("Comic Sans MS", 150)).pack()
+
+informations.bind("<Enter>", fun)
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
 base_text.grid(row=0, column=0)
