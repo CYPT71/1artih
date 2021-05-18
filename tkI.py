@@ -1,4 +1,4 @@
-from tkinter import Text, INSERT, Canvas, ttk, Tk, Menu, IntVar
+from tkinter import Text, INSERT, Canvas, ttk, Tk, Menu, IntVar, Button
 from tkinter.constants import END
 import tkinter.font as tkFont
 from tkinter.filedialog import asksaveasfile, askopenfilename
@@ -46,12 +46,24 @@ taille = ttk.Entry(buttons_interface, width=5)
 def changePolice(index):
     global fontIndex
     fontIndex = index
+    font = tkFont.Font(family=fontList[fontIndex], size=size)
     informations.configure(font=(fontList[fontIndex], size if size > 16 else 16))
-    text_entry.configure(font=(fontList[fontIndex], size))
-    passWord.configure(font=(fontList[fontIndex], size))
-    number.configure(font=(fontList[fontIndex], size))
-    result_entry.configure(font=(fontList[fontIndex], size))
-    taille.configure(font=(fontList[fontIndex], size))
+    text_entry.configure(font=font)
+    passWord.configure(font=font)
+    number.configure(font=font)
+    result_entry.configure(font=font)
+    taille.configure(font=font)
+    text_label.configure(font=font)
+    key_entry.configure(font=font)
+    length.configure(font=font)
+    result.configure(font=font)
+    informations.configure(font=font)
+    uncypherText['font'] = font
+    cypherText['font'] = font
+    more['font'] = font
+    less['font'] = font
+    delete['font'] = font
+
     generate_grid(e=None)
 
 def changeSize(plus=True):
@@ -127,11 +139,11 @@ def uncypher(e = None):
 
 #-------------------Fonctinalitées principales---------------------#
 
-uncypherText = ttk.Button(buttons_interface, text="uncypher", command= uncypher )
-cypherText = ttk.Button(buttons_interface, text="cypher", command= cypher)
-delete = ttk.Button(buttons_interface, text="delete", command= deleter)
-more = ttk.Button(buttons_interface, text=u"\u25B2", command= lambda : changeSize())
-less = ttk.Button(buttons_interface, text=u"\u25BC", command= lambda : changeSize(plus=False))
+uncypherText = Button(buttons_interface, text="uncypher", command= uncypher )
+cypherText = Button(buttons_interface, text="cypher", command= cypher)
+delete = Button(buttons_interface, text="delete", command= deleter)
+more = Button(buttons_interface, text=u"\u25B2", command= lambda : changeSize())
+less = Button(buttons_interface, text=u"\u25BC", command= lambda : changeSize(plus=False))
 
 root.bind("<Up>", uncypher)
 root.bind("<Down>", cypher)
