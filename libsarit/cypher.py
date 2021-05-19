@@ -5,7 +5,7 @@ def encryption(letter, square):
 
 def cypher(text, square):
     x, y, mainStr = "", "", ""
-    for letter in text.replace("w", "v"):
+    for letter in text:
         if letter == " ":
             mainStr += (x +" "+ y+" ")            
             x, y = "", ""
@@ -15,6 +15,6 @@ def cypher(text, square):
             y += b
     lastChar = x + y
     
-    spacer = len(text.split(" ")[0])
+    spacer = len(text.split(" ", 1)[0])
     
     return mainStr + lastChar[:spacer] + " " + lastChar[spacer:]
