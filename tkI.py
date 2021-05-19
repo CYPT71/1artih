@@ -1,18 +1,13 @@
-from tkinter import Label, Text, INSERT, Canvas, ttk, Tk, Menu, Button, Toplevel
-from tkinter.constants import END
+from tkinter import Label, Text, INSERT, Canvas, ttk, Tk, Menu, Button, Toplevel, END, filedialog
 import tkinter.font as tkFont
-from tkinter.filedialog import asksaveasfile, askopenfilename
 import json
-
 from libsarit import TextCypher, makeSquare
-import tkinter.font
-import warnings
 
 root = Tk()
 root.title("1ARI-project Colon program")
 root.resizable(False, False)
 root.attributes('-alpha',0.94)
-root.state("iconic")
+# root.state("iconic")
 
 # ---------------------------------------------------Frames---------------------------------------------------#
 
@@ -23,7 +18,7 @@ result_text = ttk.Frame(root)
 grid = ttk.Frame(root)
 infos = ttk.Frame(root)
 
-Font = tkFont.Font(family="Consolas", size=15)
+Font = tkFont.Font(family="Comic Sans MS", size=15)
 
 # ---------------------------------------------------Paramètres menu---------------------------------------------------#
 
@@ -31,16 +26,13 @@ menubar = Menu(root, tearoff=0)
 root.config(menu = menubar)
 file = Menu(menubar, tearoff=0)
 menubar.add_cascade(label = u"\u2717", command = root.destroy)
-
 menubar.add_cascade(menu = file, label = u"\U0001F4C1")
 
 policeMenu = Menu(menubar, tearoff=0)
 menubar.add_cascade(menu=policeMenu, label = u"\u2699")
 
 fontList = tkFont.families()
-
 fontIndex = 0
-
 size = 10
 taille = ttk.Entry(buttons_interface, width=5)
 
@@ -109,6 +101,7 @@ def generate_grid(e):
 passWord.bind("<KeyRelease>", generate_grid)
 
 #-------------------Fonctionnalités de mise en forme------------------#
+
 def deleter(e = None):
     result_entry.delete("1.0", "end")
     text_entry.delete("1.0", "end")
@@ -124,7 +117,7 @@ def uncypher(e = None):
     text_entry.delete("1.0", "end")
     text_entry.insert(INSERT, TextCypher(result_entry.get("1.0", "end"), passWord.get(), number.get(), True))
 
-#-------------------Fonctinalitées principales---------------------#
+#-------------------Fonctinalités principales---------------------#
 
 uncypherText = Button(buttons_interface, text="uncypher", command= uncypher )
 cypherText = Button(buttons_interface, text="cypher", command= cypher)
@@ -135,7 +128,8 @@ less = Button(buttons_interface, text=u"\u25BC", command= lambda : changeSize(pl
 root.bind("<Up>", uncypher)
 root.bind("<Down>", cypher)
 root.bind("<Control-BackSpace>", deleter)
-#-------------------Fonctinalitées bonus---------------------#
+
+#-------------------Fonctinalités bonus---------------------#
 
 def set_key(text):
     passWord.delete(0, END)
@@ -146,7 +140,7 @@ def set_spacer(text):
     number.insert(0, text)
 
 def loadFile(e=None):
-    file = askopenfilename(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
+    file = filedialog.askopenfilename(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
     data = None
     if file.split("/")[-1].endswith(".json"):
         with open(file, "r+") as jsonFile:
@@ -160,7 +154,7 @@ def loadFile(e=None):
         generate_grid(e=None)
 
 def saveFile(e=None):
-    file = asksaveasfile(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
+    file = filedialog.asksaveasfile(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
     if file == None:
         return
     file = file.name
@@ -182,14 +176,14 @@ root.bind("<Control-s>", saveFile)
 root.bind("<Control-o>", loadFile)
 root.bind("<Control-q>", lambda e: root.destroy())
 
-def fun(e):
-    window = Toplevel(root)
-    window.title("New Window")
-    window.lift(root)
+# def fun(e):
+#     window = Toplevel(root)
+#     window.title("New Window")
+#     window.lift(root)
 
-    Label(window, text=(u"\u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n"), font=("Comic Sans MS", 150)).pack()
+#     Label(window, text=(u"\u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n"), font=("Comic Sans MS", 150)).pack()
 
-informations.bind("<1>", fun)
+# informations.bind("<1>", fun)
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
 base_text.grid(row=0, column=0)
