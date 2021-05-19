@@ -35,4 +35,4 @@ def makeSquare(key):
     return [letters[i:i+5] for i in range(0, len(letters), 5)]
 
 def cutter(text, n):
-    return ' '.join((text := removeTransform(text))[i:i + n] for i in range(0, len(text), n))
+   return " ".join(re.findall(".{%s}"%n, removeTransform(text)))

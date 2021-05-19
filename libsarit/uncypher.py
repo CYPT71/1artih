@@ -1,6 +1,3 @@
-import re
-
-
 def decryption(a, b, square):
     i = -1
     while (i := i+1) < len(square):
