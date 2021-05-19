@@ -48,7 +48,7 @@ def changePolice(index):
 
 def changeSize(plus=True):
     global size
-    size = int(t)%20 if (t := taille.get()).isdigit() else ((size + 5 if plus and size < 18 else size - 5) if size > 7 else 16)
+    size = int(t)%15 if (t := taille.get()).isdigit() else ((size + 5 if plus and size < 18 else size - 5) if size > 7 else 16)
     changePolice(fontIndex)
     taille.delete(0, END)
 
@@ -201,20 +201,20 @@ grid_text.grid(row=0, column=0)
 
 text_entry.grid(row=1, column=0, padx=5, pady=5)
 
-passWord.grid(row=0, column=1, padx=(0, 20))
-number.grid(row=0, column=3)
-taille.grid(row=0, column=4)
+passWord.grid(row=0, column=1, padx=15, pady=15)
+number.grid(row=0, column=3, padx=15, pady=15)
+taille.grid(row=0, column=4, padx=15, pady=15)
 
-result_entry.grid(row=4, column=0, padx=5, pady=5)
-informations.grid(row=0, column=1)
+result_entry.grid(row=4, column=0, padx=15, pady=15)
+informations.grid(row=0, column=1, padx=15, pady=15)
 
-cypherText.grid(row=0, column=0)
-uncypherText.grid(row=0, column=1)
-delete.grid(row=0, column=2)
-less.grid(row=0, column=3)
-more.grid(row=0, column=5)
+cypherText.grid(row=0, column=0, padx=5, pady=5)
+uncypherText.grid(row=0, column=1, padx=5, pady=5)
+delete.grid(row=0, column=2, padx=5, pady=5)
+less.grid(row=0, column=3, padx=5, pady=5)
+more.grid(row=0, column=5, padx=5, pady=5)
 
-grille.grid(row=1, column=0, padx=10, pady=5)
+grille.grid(row=1, column=0, padx=15, pady=15)
 
 generate_grid(None)
 
