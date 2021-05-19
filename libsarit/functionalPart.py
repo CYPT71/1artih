@@ -1,8 +1,5 @@
-import string
-import unicodedata
-import re
+import string, re, unicodedata
 from textwrap import wrap
-
 
 def removeTransform(text):
     # replace accentuted word
