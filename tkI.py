@@ -11,10 +11,8 @@ root.attributes('-alpha',0.94)
 root.overrideredirect(True)
 # root.state("iconic")
 
-
 lastClickX = 0
 lastClickY = 0
-
 
 def SaveLastClickPos(event):
     global lastClickX, lastClickY
@@ -212,7 +210,7 @@ grid.grid(row=0, column=1)
 infos.grid(row=3, column=1)
 
 text_label.grid(row=0, column=0, sticky='w')
-key_entry.grid(row=0, column=0)
+key_entry.grid(row=0, column=0, padx=30)
 length.grid(row=0, column=2)
 result.grid(row=0, column=0, sticky='w')
 grid_text.grid(row=0, column=0)
