@@ -1,6 +1,8 @@
 import string
 import unicodedata
 import re
+from textwrap import wrap
+
 
 def removeTransform(text):
     # replace accentuted word
@@ -18,4 +20,4 @@ def makeSquare(key):
     return [letters[i:i+5] for i in range(0, len(letters), 5)]
 
 def cutter(text, n):
-   return " ".join(re.findall(".{%s}"%n, removeTransform(text)))
+   return " ".join(wrap(removeTransform(text), n))
