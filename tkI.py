@@ -2,13 +2,31 @@ from tkinter import Label, Text, INSERT, Canvas, ttk, Tk, Menu, Button, Toplevel
 import tkinter.font as tkFont
 import json
 from libsarit import TextCypher, makeSquare
+from webbrowser import *
 
 root = Tk()
 root.title("1ARI-project Colon program")
 root.resizable(False, False)
 root.attributes('-alpha',0.94)
+root.overrideredirect(True)
 # root.state("iconic")
 
+
+lastClickX = 0
+lastClickY = 0
+
+
+def SaveLastClickPos(event):
+    global lastClickX, lastClickY
+    lastClickX = event.x
+    lastClickY = event.y
+
+def Dragging(event):
+    x, y = event.x - lastClickX + root.winfo_x(), event.y - lastClickY + root.winfo_y()
+    root.geometry("+%s+%s" % (x , y))
+
+root.bind('<Button-1>', SaveLastClickPos)
+root.bind('<B1-Motion>', Dragging)
 # ---------------------------------------------------Frames---------------------------------------------------#
 
 base_text = ttk.Frame(root)
