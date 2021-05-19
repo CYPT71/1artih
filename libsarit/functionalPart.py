@@ -1,4 +1,4 @@
-import string, re, unicodedata
+import string, unicodedata, re
 from textwrap import wrap
 
 def removeTransform(text):

@@ -39,11 +39,10 @@ taille = ttk.Entry(buttons_interface, width=5)
 def changePolice(index):
     global fontIndex
     fontIndex = index
-    font = tkFont.Font(family=fontList[fontIndex], size=size)
     informations.configure(font=(fontList[fontIndex], size if size > 16 else 16))
     for elem in [text_entry, passWord, number, result_entry, taille, text_label, \
         key_entry, length, result, uncypherText, cypherText, more, less, delete, grid_text]:
-        elem['font'] = font
+        elem['font'] = tkFont.Font(family=fontList[fontIndex], size=size)
 
     generate_grid(e=None)
 
@@ -184,6 +183,7 @@ root.bind("<Control-q>", lambda e: root.destroy())
 #     Label(window, text=(u"\u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n"), font=("Comic Sans MS", 150)).pack()
 
 # informations.bind("<1>", fun)
+
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
 base_text.grid(row=0, column=0)
