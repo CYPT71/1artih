@@ -4,11 +4,11 @@ def encryption(letter, square):
         if letter in line: return (line[0], square[-1][line.index(letter)])
 
 def cypher(text, square):
-    x, y, mainStr = "", "", ""
+    x= y= mainStr = ""
     for letter in text:
         if letter == " ":
             mainStr += (x +" "+ y+" ")            
-            x, y = "", ""
+            x= y = ""
         else:
             a, b = encryption(letter, square)
             x += a
