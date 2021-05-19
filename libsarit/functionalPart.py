@@ -1,27 +1,10 @@
 import string
-
+import unicodedata
 import re
-
-try:
-    import unidecode
-except ImportError:
-    # nif import fail we try to install the module
-    import os
-    import platform
-
-    if "win" in platform.system():
-        os.system("pip install -r requirements.txt")
-    else:
-        os.system("pip3 install -r requirements.txt")
-except OSError as e:
-    print(e, "please install requirements.txt")
-finally:
-    import unidecode
-
 
 def removeTransform(text):
     # replace accentuted word
-    text = unidecode.unidecode(text)
+    text = unicodedata.normalize("NFKD", text).encode("ASCII", "ignore").decode("utf8")
     # return only letter in lower case 
     return re.sub('[^A-Za-z]+', '', text).lower()
 
