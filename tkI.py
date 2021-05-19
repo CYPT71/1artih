@@ -189,7 +189,7 @@ def fun(e):
 
     Label(window, text=(u"\u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n"), font=("Comic Sans MS", 150)).pack()
 
-informations.bind("<Enter>", fun)
+informations.bind("<1>", fun)
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
 base_text.grid(row=0, column=0)

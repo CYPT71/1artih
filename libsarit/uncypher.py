@@ -24,4 +24,4 @@ def uncypher(text, square):
     try:
         return "".join(decryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
     except Exception as e:
-        return ' '
+        return str(e)
