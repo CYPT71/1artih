@@ -1,6 +1,6 @@
-from .functionalPart import make_square, cutter, remove_transform
-from .cypher import cypher
-from .uncypher import uncypher
+from libsarit.functionalPart import make_square, cutter, remove_transform
+from libsarit.cypher import cypher
+from libsarit.uncypher import uncypher
 
 
 class TextCypher:
