@@ -1,8 +1,8 @@
 from tkinter import Label, Text, INSERT, Canvas, ttk, Tk, Menu, Button, Toplevel, END, filedialog
 import tkinter.font as tkFont
 import json
-from libsarit import TextCypher, makeSquare
-from webbrowser import *
+from libsarit import TextCypher, make_square
+
 
 root = Tk()
 root.title("1ARI-project Colon program")
@@ -14,17 +14,17 @@ root.overrideredirect(True)
 lastClickX = 0
 lastClickY = 0
 
-def SaveLastClickPos(event):
+def save_last_click_pos(event):
     global lastClickX, lastClickY
     lastClickX = event.x
     lastClickY = event.y
 
-def Dragging(event):
+def dragging(event):
     x, y = event.x - lastClickX + root.winfo_x(), event.y - lastClickY + root.winfo_y()
     root.geometry("+%s+%s" % (x , y))
 
-root.bind('<Button-1>', SaveLastClickPos)
-root.bind('<B1-Motion>', Dragging)
+root.bind('<Button-1>', save_last_click_pos)
+root.bind('<B1-Motion>', dragging)
 # ---------------------------------------------------Frames---------------------------------------------------#
 
 base_text = ttk.Frame(root)
@@ -52,7 +52,7 @@ fontIndex = 0
 size = 10
 taille = ttk.Entry(buttons_interface, width=5)
 
-def changePolice(index):
+def change_police(index):
     global fontIndex
     fontIndex = index
     informations.configure(font=(fontList[fontIndex], size if size > 16 else 16))
@@ -62,19 +62,19 @@ def changePolice(index):
 
     generate_grid(e=None)
 
-def changeSize(plus=True):
+def change_size(plus=True):
     global size
     size = int(t)%15 if (t := taille.get()).isdigit() else ((size + 5 if plus and size < 18 else size - 5) if size > 7 else 16)
-    changePolice(fontIndex)
+    change_police(fontIndex)
     taille.delete(0, END)
 
 for i, font in enumerate(fontList):
-    policeMenu.add_command(label=font, command= lambda i=i: changePolice(i))
+    policeMenu.add_command(label=font, command= lambda i=i: change_police(i))
 
 
-root.bind("<Control-Up>", changeSize)
-root.bind("<Control-Down>", lambda e: changeSize(plus=False))
-taille.bind("<Return>", changeSize)
+root.bind("<Control-Up>", change_size)
+root.bind("<Control-Down>", lambda e: change_size(plus=False))
+taille.bind("<Return>", change_size)
 
 # ---------------------------------------------------Widgets---------------------------------------------------#
 
@@ -106,7 +106,7 @@ def generate_grid(e):
     for _ in range(2):
         index = 0
         grille.delete("all")
-        var = [a for sub in makeSquare(passWord.get()) for a in sub]
+        var = [a for sub in make_square(passWord.get()) for a in sub]
         for i in range(25, 250, 50):
             for j in range(25, 250, 50):
                 grille.create_text(j, i, text=var[index], font=(fontList[fontIndex], size))
@@ -137,8 +137,8 @@ def uncypher(e = None):
 uncypherText = Button(buttons_interface, text="uncypher", command= uncypher )
 cypherText = Button(buttons_interface, text="cypher", command= cypher)
 delete = Button(buttons_interface, text=u"\U0001F5D1", command= deleter)
-more = Button(buttons_interface, text=u"\u25B2", command= lambda : changeSize())
-less = Button(buttons_interface, text=u"\u25BC", command= lambda : changeSize(plus=False))
+more = Button(buttons_interface, text=u"\u25B2", command= lambda : change_size())
+less = Button(buttons_interface, text=u"\u25BC", command= lambda : change_size(plus=False))
 
 root.bind("<Up>", uncypher)
 root.bind("<Down>", cypher)
@@ -154,8 +154,9 @@ def set_spacer(text):
     number.delete(0, END)
     number.insert(0, text)
 
-def loadFile(e=None):
-    file = filedialog.askopenfilename(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
+format = [("json files", "*.json")]
+def load_file(e=None):
+    file = filedialog.askopenfilename(filetypes=format, defaultextension = format)
     data = None
     if file.split("/")[-1].endswith(".json"):
         with open(file, "r+") as jsonFile:
@@ -168,8 +169,8 @@ def loadFile(e=None):
         set_spacer(data["spacer"])
         generate_grid(e=None)
 
-def saveFile(e=None):
-    file = filedialog.asksaveasfile(filetypes=[("json files", "*.json")], defaultextension = [("json files", "*.json")])
+def save_file(e=None):
+    file = filedialog.asksaveasfile(filetypes=format, defaultextension = format)
     if file == None:
         return
     file = file.name
@@ -185,21 +186,24 @@ def saveFile(e=None):
         with open(file, "w+") as jsonFile:
             json.dump(data, jsonFile, indent=4)
 
-file.add_command(label = u"\U0001F5C1 Open", command = loadFile)
-file.add_command(label = u"\U0001F5AB Save", command = saveFile)
-root.bind("<Control-s>", saveFile)
-root.bind("<Control-o>", loadFile)
+file.add_command(label = u"\U0001F5C1 Open", command = load_file)
+file.add_command(label = u"\U0001F5AB Save", command = save_file)
+root.bind("<Control-s>", save_file)
+root.bind("<Control-o>", load_file)
 root.bind("<Control-q>", lambda e: root.destroy())
 
-# def fun(e):
-#     window = Toplevel(root)
-#     window.title("New Window")
-#     window.lift(root)
+"""
 
-#     Label(window, text=(u"\u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n"), font=("Comic Sans MS", 150)).pack()
+def fun(e):
+    window = Toplevel(root)
+    window.title("New Window")
+    window.lift(root)
 
-# informations.bind("<1>", fun)
+    Label(window, text=(u"\u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n \u262E \u262E \u262E \u262E \n"), font=("Comic Sans MS", 150)).pack()
 
+informations.bind("<1>", fun)
+
+"""
 # ---------------------------------------------------Geometry Managers---------------------------------------------------#
 
 base_text.grid(row=0, column=0)

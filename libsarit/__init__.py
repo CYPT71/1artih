@@ -1,2 +1,2 @@
 from .textCypher import TextCypher
-from .functionalPart import makeSquare, cutter
+from .functionalPart import make_square, cutter

@@ -3,7 +3,7 @@ def decryption(a, b, square):
         if a.lower() in line : 
             if b not in square[-1]:
     
-                raise Exception("La clef a été changé")
+                raise ValueError("La clef a été changé")
 
             return line[square[-1].index(b.lower())]
 
@@ -23,5 +23,5 @@ def uncypher(text, square):
             for _ in range(2): text.pop(0)
     try:
         return "".join(decryption(a,b, square) for a, b in zip(x,y)) + uncypher(text, square)
-    except Exception as e:
+    except ValueError as e:
         return str(e)

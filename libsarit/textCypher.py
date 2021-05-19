@@ -1,4 +1,4 @@
-from .functionalPart import makeSquare, cutter, removeTransform
+from .functionalPart import make_square, cutter, remove_transform
 from .cypher import cypher
 from .uncypher import uncypher
 
@@ -12,7 +12,7 @@ class TextCypher:
             spacer = int(spacer)
 
         self.text = cutter(text, spacer)
-        self.key = makeSquare(key)
+        self.key = make_square(key)
         self.cypher = is_cypher
 
     def __text_cypher(self):
