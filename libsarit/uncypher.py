@@ -1,7 +1,6 @@
 def decryption(a, b, square):
-    i = -1
-    while (i := i+1) < len(square):
-        if a.lower() in square[i] : 
+   for line in square:
+        if a.lower() in line : 
             if b not in square[-1]:
     
                 raise Exception("La clef a été changé")

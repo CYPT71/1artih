@@ -1,7 +1,7 @@
 def encryption(letter, square): 
-    i = -1
-    while (i:=i+1) < len(square): 
-        if letter in (sub := square[i]): return (sub[0], square[-1][sub.index(letter)])
+    
+    for line in square: 
+        if letter in line: return (line[0], square[-1][line.index(letter)])
 
 def cypher(text, square):
     x, y, mainStr = "", "", ""
