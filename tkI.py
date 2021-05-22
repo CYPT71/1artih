@@ -1,14 +1,14 @@
-from tkinter import Label, Text, INSERT, Canvas, ttk, Tk, Menu, Button, Toplevel, END, filedialog
+from tkinter import Label, Text, INSERT, Canvas, ttk, Tk, Menu, Button, Toplevel, END, filedialog, ACTIVE, NORMAL
 import tkinter.font as tkFont
 import json
 from libsarit import TextCypher, make_square
-
+from voice_to_text import speech_to_text
 
 root = Tk()
 root.title("1ARI-project Colon program")
 root.resizable(False, False)
 root.attributes('-alpha',0.94)
-root.overrideredirect(True)
+# root.overrideredirect(True)
 # root.state("iconic")
 
 lastClickX = 0
@@ -23,8 +23,8 @@ def dragging(event):
     x, y = event.x - lastClickX + root.winfo_x(), event.y - lastClickY + root.winfo_y()
     root.geometry("+%s+%s" % (x , y))
 
-root.bind('<Button-1>', save_last_click_pos)
-root.bind('<B1-Motion>', dragging)
+# root.bind('<Button-1>', save_last_click_pos)
+# root.bind('<B1-Motion>', dragging)
 # ---------------------------------------------------Frames---------------------------------------------------#
 
 base_text = ttk.Frame(root)
@@ -91,6 +91,27 @@ passWord = ttk.Entry(key, width=25, font=Font)
 number = ttk.Entry(key, width=10, font=Font)
 result_entry = Text(result_text, width=60, height=10, font=Font)
 
+# vocal implementation
+
+def text_reco():
+    text_vocal ['state'] = ACTIVE
+    
+    
+    text = speech_to_text()
+
+    text_entry.replace("1.0", "end", text)
+    text_vocal['state'] = NORMAL
+
+def key_reco():
+    key_vocal['state'] = ACTIVE
+
+    key = speech_to_text()
+
+    passWord.delete(0, "end")
+    passWord.insert(0, key)
+
+text_vocal = Button(base_text, text=u"\U0001F399", command=lambda : text_reco())
+key_vocal = Button(key, text=u"\U0001F399", command=lambda : key_reco())
 # ---------------------------------------------------Functions----------------------------------------------------------#
 
 #-------------------Grille de lettres------------------#
@@ -214,6 +235,8 @@ grid.grid(row=0, column=1)
 infos.grid(row=3, column=1)
 
 text_label.grid(row=0, column=0, sticky='w')
+text_vocal.grid(row=0, column=1)
+key_vocal.grid(row=1, column=0)
 key_entry.grid(row=0, column=0, padx=30)
 length.grid(row=0, column=2)
 result.grid(row=0, column=0, sticky='w')
