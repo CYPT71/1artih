@@ -5,12 +5,13 @@ def remove_transform(text):
     # replace accentuted word
     text = unicodedata.normalize("NFKD", text).encode("ASCII", "ignore").decode("utf8")
     # return only letter in lower case 
-    return re.sub(regex, '', text).lower().replace("w", "v")
+    return re.sub(regex, '', text.replace("w", "v")).lower()
 
 
 def make_square(key):
     # ord and extract letters 
-    letters = (letter_key := "".join(sorted(set((key := remove_transform(key))),key=key.index))) + string.ascii_lowercase.strip(letter_key)
+    key = remove_transform(key)
+    letters = (letter_key := "".join(sorted(set(key),key=key.index))) + string.ascii_lowercase.strip(letter_key).replace("w", "")
     return [letters[i:i+5] for i in range(0, len(letters), 5)]
 
 def cutter(text, n):
