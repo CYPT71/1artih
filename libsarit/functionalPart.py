@@ -14,7 +14,6 @@ def make_square(key):
 
     letters = (letter_key := sorted(set(key),key=key.index)) + [l for l in string.ascii_lowercase if l not in letter_key and l != "w"]
 
-    print([letters[i:i+5] for i in range(0, len(letters), 5)])
     return [letters[i:i+5] for i in range(0, len(letters), 5)]
 
 def cutter(text, n):
